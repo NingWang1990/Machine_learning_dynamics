@@ -24,7 +24,7 @@ finishup = onCleanup(@() CleanupFun());
 set(0,'defaulttextinterpreter','latex')
 
 %% Load Data
-load('../data/phase_field_oneD_simulation.mat', 'usol', 't', 'x')
+load('../data/phase_field_oneD_experiment.mat', 'usol', 't', 'x')
 u_star = real(usol); % 500x500
 t_star = t; % 500x1
 x_star = x';   % 500x1
@@ -48,14 +48,14 @@ u0 = u_star(idx0,i);
 
 idx1 = randsample(N_star,N1);
 x1 = x_star(idx1,:);
-u1 = u_star(idx1,i+1);
+u1 = u_star(idx1,(i+1));
 
-hyp = [log([1.0 1.0]) 10 3.0 0.0 -4.0];
+hyp = [log([1.0 1.0]) 10 0.47 -4.8 2 -4.0];
 model = HPM(x1, u1, x0, u0, dt, hyp);
 model = model.train(5000);
 
 hyp = model.hyp;
-params = hyp(3:5);
+params = hyp(3:6);
 
 [pred_n_star, var_n_star] = model.predict(x_star);
 var_n_star = abs(diag(var_n_star));
