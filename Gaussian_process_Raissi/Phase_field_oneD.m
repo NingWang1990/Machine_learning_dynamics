@@ -24,7 +24,8 @@ finishup = onCleanup(@() CleanupFun());
 set(0,'defaulttextinterpreter','latex')
 
 %% Load Data
-load('../data/phase_field_oneD_experiment_filtered.mat', 'usol', 't', 'x')
+%load('../data/phase_field_oneD_simulation_beginning_stage_0.02noise.mat', 'usol', 't', 'x')
+load('../data/phase_field_oneD_experiment.mat', 'usol', 't', 'x')
 u_star = real(usol); % 500x500
 t_star = t; % 500x1
 x_star = x';   % 500x1
@@ -35,7 +36,7 @@ nsteps = size(t_star,1)-1;
 N0 = 420;
 N1 = 410;
 %% Clean Data
-%rng('default')
+rng('default')
 i = randi(nsteps);
 fprintf(1,'random step: %d\n\n', i);
 
@@ -50,7 +51,7 @@ idx1 = randsample(N_star,N1);
 x1 = x_star(idx1,:);
 u1 = u_star(idx1,(i+1));
 
-hyp = [log([1.0 1.0]) 10 0.47 -4.8 -4.0];
+hyp = [log([1.0 1.0]) 20. 5. -1. -4.0];
 model = HPM(x1, u1, x0, u0, dt, hyp);
 model = model.train(5000);
 
