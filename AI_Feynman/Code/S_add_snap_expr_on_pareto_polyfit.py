@@ -67,7 +67,6 @@ def add_snap_expr_on_pareto_polyfit(pathdir, filename, math_expr, PA):
 
     eq = parse_expr(str(math_expr))
     expr = eq
-
 #    # Get the numbers appearing in the expression
 #    is_atomic_number = lambda expr: expr.is_Atom and expr.is_number
 #    eq_numbers = [subexpression for subexpression in preorder_traversal(expr) if is_atomic_number(subexpression)]
@@ -94,7 +93,6 @@ def add_snap_expr_on_pareto_polyfit(pathdir, filename, math_expr, PA):
     # Get the numbers appearing in the expression
     is_atomic_number = lambda expr:expr.is_Atom and expr.is_number
     eq_numbers = [subexpression for subexpression in preorder_traversal(expr) if is_atomic_number(subexpression)]
-
     # Do integer snap one parameter at a time                                                                                                                                    
     integer_snapped_expr = []
     for w in range(len(eq_numbers)):
@@ -113,7 +111,6 @@ def add_snap_expr_on_pareto_polyfit(pathdir, filename, math_expr, PA):
             integer_snapped_expr = integer_snapped_expr + [eq]
         except:
             continue
-
             # Get the numbers appearing in the expression                                                                                                            
     
 #    is_atomic_number = lambda expr: expr.is_Atom and expr.is_number
