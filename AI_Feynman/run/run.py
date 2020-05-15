@@ -30,9 +30,10 @@ from S_add_snap_expr_on_pareto_polyfit import add_snap_expr_on_pareto_polyfit
 
 pathdir = './'
 filename = 'phase_field_OneD'
-polyfit_deg = 1
+polyfit_deg = 4
 test_percentage = 20
-
+DR_file = ""
+filename_orig = filename
 # Split the data into train and test set 
 input_data = np.loadtxt(pathdir+filename)
 sep_idx = np.random.permutation(len(input_data))
@@ -70,12 +71,46 @@ except:
 #run zero snap on polyfit output
 PA_poly = ParetoSet()
 PA_poly.add(Point(x=complexity, y=polyfit_err, data=str(eqn)))
-print ("====================starting running zero snap========================================")
 PA_poly = add_snap_expr_on_pareto_polyfit(pathdir, filename_train, str(eqn), PA_poly) 
-
 for l in range(len(PA_poly.get_pareto_points())):
     PA.add(Point(PA_poly.get_pareto_points()[l][0],PA_poly.get_pareto_points()[l][1],PA_poly.get_pareto_points()[l][2]))
 
 print("Complexity  RMSE  Expression")
 for pareto_i in range(len(PA.get_pareto_points())):
     print(PA.get_pareto_points()[pareto_i])
+
+PA_list = PA.get_pareto_points()
+
+# Run gradient descent on the data one more time                                                                                                                          
+for i in range(len(PA_list)):
+    try:
+        gd_update = final_gd(pathdir+filename,PA_list[i][-1])
+        PA.add(Point(x=gd_update[1],y=gd_update[0],data=gd_update[2]))
+    except:
+        continue
+  
+PA_list = PA.get_pareto_points()
+for j in range(len(PA_list)):
+    PA = add_snap_expr_on_pareto_polyfit(pathdir,filename_train,PA_list[j][-1],PA)
+
+list_dt = np.array(PA.get_pareto_points())
+data_file_len = len(np.loadtxt(pathdir+filename))
+log_err = []
+log_err_all = []
+for i in range(len(list_dt)):
+    log_err = log_err + [np.log2(float(list_dt[i][1]))]
+    log_err_all = log_err_all + [data_file_len*np.log2(float(list_dt[i][1]))]
+log_err = np.array(log_err)
+log_err_all = np.array(log_err_all)
+
+# Try the found expressions on the test data                                                                                                                                  
+if DR_file=="" and test_data.size != 0:
+    test_errors = []
+    for i in range(len(list_dt)):
+        test_errors = test_errors + [get_symbolic_expr_error(pathdir,filename+"_test",str(list_dt[i][-1]))]
+    test_errors = np.array(test_errors)
+    # Save all the data to file                                                                                                                                               
+    save_data = np.column_stack((test_errors,log_err,log_err_all,list_dt))
+else:
+    save_data = np.column_stack((log_err,log_err_all,list_dt))
+np.savetxt("results/solution_%s" %filename_orig,save_data,fmt="%s")
