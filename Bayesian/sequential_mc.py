@@ -168,7 +168,7 @@ class SequentialMC():
             raise ValueError('weights must have the same length with feature_descriptions')
         expr = sympy.Integer(0)
         for i, desp in enumerate(feature_descriptions):
-            expr += weights * desp
+            expr += weights[i] * desp
         expr += bias
         return expr
         
