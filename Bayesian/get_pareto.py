@@ -258,7 +258,7 @@ def save_pareto(file_name, pareto_set):
 
     """
     if not isinstance(pareto_set, ParetoSet):
-        raise TypeError('pareto_set must be an instance of ', ParetoSet):
+        raise TypeError('pareto_set must be an instance of ', ParetoSet)
     
 
 
