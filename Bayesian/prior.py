@@ -17,15 +17,19 @@ class ComplexityLogPrior():
             raise ValueError('method should be in ', methods_implemented )
         self.method = method
         self.simplicity_preference = simplicity_preference
-        
+    
+    def evaluate_complexity(self,binary_coef):
+        coef = np.array(binary_coef)
+        check_binary_oneD_array(coef)
+        if self.method is 'num_terms':
+            complexity = float(np.sum(coef > 0.)) / len(coef)
+        return complexity
+
     def __call__(self,binary_coef):
         # unnormalized log prior probability
         coef = np.array(binary_coef)
         check_binary_oneD_array(coef)
-
-        if self.method is 'num_terms':
-            complexity = float(np.sum(coef > 0.)) / len(coef)
-        
+        complexity = self.evaluate_complexity(coef)
         self.log_prior_ = -1. * self.simplicity_preference * complexity
         return self.log_prior_
                 

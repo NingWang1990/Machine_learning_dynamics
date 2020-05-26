@@ -10,7 +10,7 @@ def acceptance_judgement(current_logposterior,proposal_logposterior):
     current_logposterior...........log posterior for current state
     proposal_logposterior..........log posterior for the proposal state
     """
-    acceptance_prob = min(1., np.exp(current_logposterior-proposal_logposterior))
+    acceptance_prob = min(1., np.exp(proposal_logposterior-current_logposterior))
     rand = np.random.random()
     acceptance = False
     if rand < acceptance_prob:
@@ -101,7 +101,7 @@ class MCMC():
         log_posterior = self.posterior(current)
         log_prior = self.posterior.prior(current)
         log_likelihood = self.posterior.likelihood(current)
-        coef = self.posterior.likelihood.get_regress_coef(current)
+        weights,bias = self.posterior.likelihood.get_weights_bias(current)
 
         if step == 0:
             if log_header == True:
@@ -115,7 +115,7 @@ class MCMC():
                 log_file.write(log_format % headers)
                 
         log_format = "% 10d  " + len(coef) * "  %- 16.8f  " + "  % 12.3f  " + 3*"  % 15.3f  " + "\n"
-        data =  (step,)+tuple(coef)+(prob,) + (log_prior, log_likelihood, log_posterior)
+        data =  (step,) + tuple(weights) + (bias,) + (prob,) + (log_prior, log_likelihood, log_posterior)
         log_file.write(log_format % data)
 
 

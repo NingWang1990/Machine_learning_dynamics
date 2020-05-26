@@ -1,24 +1,33 @@
 import sympy
 import numpy as np
-from sklearn.linear_model import BayesianRidge
+from sklearn.linear_model import LinearRegression
 from scipy.stats import norm
 from error_checker import check_binary_oneD_array
 
 class GaussianLogLikelihood():
 
-    def __init__(self,X,Y,reg_normalization=True):
+    def __init__(self,X,Y,reg_normalization=True,gaussian_error_std=None):
         """
-        X...................ndarray of shape (n_samples, n_variables)
-        Y...................ndarray of shape (n_samples,)
-        reg_normalization...Boolean. True: first normalize X and do regression.
-        """
+        X................... ndarray of shape (n_samples, n_variables)
+        Y................... ndarray of shape (n_samples,)
+        reg_normalization... Boolean. True: first normalize X and do regression.
+        guassian_error_std.. float or None, user-specified standard deviation of the 
+                             Gaussian error distribution.
+                             None: use the std estimated by the GaussianRidge to
+                                   estimate Gaussian likelihood
+                             float: the std from GaussianRidge will be ignored,
+                                    and this value is used to estimate Gaussian 
+                                    likelihood.
+        """                  
         self.X = np.array(X)
         self.Y = np.array(Y)
+        self.gaussian_error_std = gaussian_error_std
         if not self.X.ndim == 2:
             raise ValueError('X must be 2D array')
         if not self.X.shape[0] == self.Y.shape[0]:
             raise ValueError('length of X and Y must be identical')
-        self.regressor = BayesianRidge()
+        #self.regressor = BayesianRidge()
+        self.regressor = LinearRegression()
         self.reg_normalization = reg_normalization 
         if reg_normalization == True:
             variables_mean_ = np.mean(X,axis=0, keepdims=True)
@@ -52,11 +61,29 @@ class GaussianLogLikelihood():
         if refit is True:
             self.regressor.fit(x,y)
             self.coef_treated = coef.copy()
-        mean, std = self.regressor.predict(x, return_std=True)
+        mean = self.regressor.predict(x)
+        std = np.std(mean-y)
+        self.regression_MSE_ = std*std
+        #mean, std = self.regressor.predict(x, return_std=True)
         self.log_likelihood_ =  np.mean(norm.logpdf(y,loc=mean,scale=std))
         return self.log_likelihood_
 
-    def get_regress_coef(self,binary_coef):
+    def get_regression_MSE(self,binary_coef):
+        """
+        return regression MSE for the linear model specified by binary_coef
+        """
+        coef = np.array(binary_coef)
+        check_binary_oneD_array(coef)
+        shape = self.X.shape
+        if not len(coef) == shape[1]:
+            raise ValueError("length of the binary_coef doesn't match number of variables (columns) in X")
+        log_likelihood = self.__call__(coef)
+        return self.regression_MSE_
+
+    def get_weights_bias(self,binary_coef):
+        """
+        return regression weights and bias for the linear model specified by binary_coef 
+        """
         coef = np.array(binary_coef)
         check_binary_oneD_array(coef)
         shape = self.X.shape
@@ -74,9 +101,10 @@ class GaussianLogLikelihood():
             # rescale weights
             regress_coef[:-1] /= self.variables_std_
         
-        self.regress_coef_ = regress_coef
+        self.regress_weights_ = regress_coef[:-1]
+        self.regress_bias_ =  regress_coef[-1]
 
-        return self.regress_coef_
+        return self.regress_weights_, self.regress_bias_
 
     @property 
     def X(self):

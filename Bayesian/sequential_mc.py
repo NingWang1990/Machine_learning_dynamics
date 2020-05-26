@@ -4,36 +4,43 @@ from mcmc import MCMC
 import sympy
 import io
 import csv
+from get_pareto import ParetoPoint, ParetoSet
 
 class SequentialMC():
-    def __init__(self, posterior, mcmc=None,log_file=None):
+    def __init__(self, posterior, mcmc=None,log_file=None, pareto_set=ParetoSet()):
         """
-        posterior...........object of the class LogPosterior
-        mcmc................None or object of the class MCMC
-        log_file............None or string or a writable io.IOBase instance.
-                            None: no log file. don't write out anything
-                            string: name of the log file
+        posterior........... object of the class LogPosterior
+        mcmc................ None or object of the class MCMC
+        log_file............ None or string or a writable io.IOBase instance.
+                             None: no log file. don't write out anything
+                             string: name of the log file
+        pareto_set..... object of the class PaeretoSet. 
+                             the initial pareto set. The new points generated in __call__
+                             will be added into it.
         """
         if (log_file == None ) or (isinstance(log_file,str)) or ( isinstance(log_file, io.IOBase) and  log_file.writable() ):
             self.log_file = log_file
         else:
             raise TypeError('log_file must be None or a string or a writable io.IOBase instance')
 
+        if not isinstance(pareto_set, ParetoSet):
+            raise TypeError('init_pareto_set must be an object of ', ParetoSet)
+
         self.posterior = posterior
         self.mcmc = mcmc
+        self.pareto_set = pareto_set
 
-    def __call__(self, samples, descriptions, beta0_nsteps=100, beta0to1_nsteps=100,beta1_nsteps=100,mcmc_nsteps=100):
+    def __call__(self, samples, feature_descriptions, beta0_nsteps=100, beta0to1_nsteps=100,beta1_nsteps=100,mcmc_nsteps=100):
         """
         samples.....................ndarray of shape (n_samples, n_features)
                                     initial samples to perform sequential MC  
-        descriptions............... list of sympy expressions for each feature (column) in samples
+        feature_descriptions....... list of sympy expressions for each feature (column) in samples
         beta0_nsteps................int, # of steps with beta = 0
         beta0to1_nsteps.............int, # of steps with beta 0->1
         beta1_nsteps................int, # of steps with beta = 1
         mcmc_nsteps.................int, # of mcmc steps
-        descriptions......... list of sympy expressions, descriptions of each column (variable)
         """
-        for desp in descriptions:
+        for desp in feature_descriptions:
             if not isinstance(desp, sympy.Expr):
                 raise ValueError('entry in descriptions must be sympy expression')
         if not self.log_file == None:
@@ -48,7 +55,11 @@ class SequentialMC():
         size = len(samples)
         betas = self.generate_betas(beta0_nsteps, beta0to1_nsteps,beta1_nsteps)
         if not out_csv == None:
-            self.log(0, samples, descriptions, out_csv)
+            self.log(0, samples, feature_descriptions, out_csv)
+    
+        for sample in samples:
+            self.add_to_ParetoSet(sample, feature_descriptions)
+
         for i,beta in enumerate(betas):
             print ('step: %d, beta: %6.3f' % (i, beta))
             # set beta
@@ -64,13 +75,28 @@ class SequentialMC():
                 samples[j] = self.mcmc(nsteps=mcmc_nsteps, current=sample,posterior=self.posterior,log_header=False)
             
             if not out_csv == None:
-                self.log(i+1, samples, descriptions, out_csv)
+                self.log(i+1, samples, feature_descriptions, out_csv)
+
+            for sample in samples:
+                self.add_to_ParetoSet(sample, feature_descriptions)
+
         if not self.log_file == None:
             if isinstance(self.log_file, str):
                 log_file.close()
         
-        return samples
+        return self.pareto_set
 
+    def add_to_ParetoSet(self, sample, feature_descriptions):
+        """
+        add sample to ParetoSet
+        """
+        complexity = self.posterior.prior.evaluate_complexity(sample)
+        mse = self.posterior.likelihood.get_regression_MSE(sample)
+        weights,bias = self.posterior.likelihood.get_weights_bias(sample)
+        expr = self.construct_linear_expression(weights, bias,feature_descriptions)
+        pareto_point = ParetoPoint(x=complexity, y=mse, data=expr)
+        self.pareto_set.add(pareto_point)
+        
     def log_posterior(self,beta,samples):
         """
         samples.................ndarray of shape (n_samples, n_features)
@@ -84,7 +110,6 @@ class SequentialMC():
             log_prior = self.posterior.prior(sample)
             log_likelihood = self.posterior.likelihood(sample)
             log_posteriors[i] = beta * log_likelihood + log_prior
-        
         return log_posteriors
             
     def generate_betas(self, beta0_nsteps, beta0to1_nsteps,beta1_nsteps):
@@ -118,19 +143,41 @@ class SequentialMC():
         p = np.exp(w - w_sum)
         return p
 
-
     def unique(self, X):
         """
         X..........ndarry of shape (n_samples, n_features)
         """
         return np.unique(X, axis=0, return_counts=True)
 
-    def log(self, step, samples, descriptions, out_csv, log_header=True):
+    def construct_linear_expression(self, weights, bias, feature_descriptions):
         """
-        step................. int 
-        samples.,,,,,,,,..... 2D array-like of shape (n_samples, n_features)
-        descriptions......... list of sympy expressions, descriptions of each feature (column)
-        out_csv.............. csv.writer object
+        evaluate the expression: weights * feature_descriptions.T + bias with sympy
+
+        weights................... 1D array-like, weights of each feature
+        bias...................... float, bias
+        feature_descriptions...... list of sympy expressions, descriptions of each feature.
+        
+        Return:
+        sympy expression
+        
+        """
+        #for desp in feature_descriptions:
+        #    if not isinstance(desp, sympy.Expr):
+        #        raise ValueError('entry in descriptions must be sympy expression')            
+        if not len(weights) == len(feature_descriptions):
+            raise ValueError('weights must have the same length with feature_descriptions')
+        expr = sympy.Integer(0)
+        for i, desp in enumerate(feature_descriptions):
+            expr += weights * desp
+        expr += bias
+        return expr
+        
+    def log(self, step, samples, feature_descriptions, out_csv, log_header=True):
+        """
+        step.......................... int 
+        samples.,,,,.........,,,,..... 2D array-like of shape (n_samples, n_features)
+        feature__descriptions......... list of sympy expressions, descriptions of each feature (column)
+        out_csv....................... csv.writer object
         """
         if step == 0:
             if log_header is True:
@@ -141,13 +188,8 @@ class SequentialMC():
 
         row = [step,]
         for sample in samples:
-            coef = self.posterior.likelihood.get_regress_coef(sample)
-            expr = sympy.Integer(0)
-            if not len(coef) == len(descriptions) + 1:
-                raise ValueError("lengths of coef and descriptions don't match")
-            for i, desp in enumerate(descriptions):
-                expr += coef[i] * desp
-            expr += coef[-1]
+            weights, bias = self.posterior.likelihood.get_weights_bias(sample)
+            expr = self.construct_linear_expression(weights,bias,feature_descriptions)
             row += [ str(expr),]
         out_csv.writerow(row)
 

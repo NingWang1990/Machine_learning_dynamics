@@ -1,6 +1,7 @@
 import numpy as np 
 import itertools
 
+
 def generate_binary_coef(max_non_zeros=1, length=10):
     """
     max_non_zeros........non-negative int, maximum non-zero values
