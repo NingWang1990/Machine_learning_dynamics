@@ -243,7 +243,6 @@ class ParetoSet(SortedKeyList):
         for a in A:
             self.add(a)
     
-    
     def plot(self):
         """Plotting the Pareto frontier."""
         array = self.to_array()
@@ -251,24 +250,19 @@ class ParetoSet(SortedKeyList):
         plt.plot(array[:, 0], array[:, 1], 'r.')
         plt.show()
 
-
-
-def save_pareto(file_name, pareto_set):
-    """
-    file_name........... str
-    pareto_set.......... object of ParetoSet
-    """
-    if not instance(file_name, str):
-        raise TypeError('file_name must be a string')
-    if not isinstance(pareto_set, ParetoSet):
-        raise TypeError('pareto_set must be an instance of ', ParetoSet)
-    outf = open(file_name,'w')
-    out_csv = csv.writer(outf)
-    out_csv.writerow(['x','y','data'])
-    for point in pareto_set:
-        out_csv.writerow([point.x, point.y, point.data])
-    outf.close()
-    
+    def save_csv(self,file_name):
+        """
+        file_name........... str
+        """
+        if not isinstance(file_name, str):
+            raise TypeError('file_name must be a string')
+        outf = open(file_name,'a')
+        out_csv = csv.writer(outf)
+        out_csv.writerow(['x','y','data'])
+        for point in self:
+            out_csv.writerow([point.x, point.y, point.data])
+        outf.close()
+   
 
 
 
