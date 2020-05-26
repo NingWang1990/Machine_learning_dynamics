@@ -8,7 +8,7 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 import numpy as np
 from sortedcontainers import SortedKeyList
-
+import csv
 
 class ParetoPoint(object):
     def __init__(self, x, y, data=None, id=None):
@@ -255,10 +255,19 @@ class ParetoSet(SortedKeyList):
 
 def save_pareto(file_name, pareto_set):
     """
-
+    file_name........... str
+    pareto_set.......... object of ParetoSet
     """
+    if not instance(file_name, str):
+        raise TypeError('file_name must be a string')
     if not isinstance(pareto_set, ParetoSet):
         raise TypeError('pareto_set must be an instance of ', ParetoSet)
+    outf = open(file_name,'w')
+    out_csv = csv.writer(outf)
+    out_csv.writerow(['x','y','data'])
+    for point in pareto_set:
+        out_csv.writerow([point.x, point.y, point.data])
+    outf.close()
     
 
 
