@@ -71,8 +71,11 @@ class GaussianLogLikelihood():
         x[:,0:np.sum(mask)] = self.X_test[:,mask]
         y = self.y_test
         mean = self.regressor.predict(x)
-        std = np.std(mean-y)
-        self.regression_MSE_ = std*std
+        if self.gaussian_error_std is None:
+            std = np.std(mean-y)
+        else:
+            std = self.gaussian_error_std
+        self.regression_MSE_ = np.mean(np.sum((mean-y)**2))
         #mean, std = self.regressor.predict(x, return_std=True)
         self.log_likelihood_ =  np.mean(norm.logpdf(y,loc=mean,scale=std))
         return self.log_likelihood_

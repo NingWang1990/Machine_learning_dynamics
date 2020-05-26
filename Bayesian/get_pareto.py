@@ -252,6 +252,17 @@ class ParetoSet(SortedKeyList):
         plt.show()
 
 
+
+def save_pareto(file_name, pareto_set):
+    """
+
+    """
+    if not isinstance(pareto_set, ParetoSet):
+        raise TypeError('pareto_set must be an instance of ', ParetoSet):
+    
+
+
+
 if __name__ == "__main__":
     PA = ParetoSet()
     A = np.zeros((40, 2))
