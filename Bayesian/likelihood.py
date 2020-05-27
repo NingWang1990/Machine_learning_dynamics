@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 class GaussianLogLikelihood():
 
-    def __init__(self,X,y,reg_normalization=True,gaussian_error_std=None,test_size=0.3,
+    def __init__(self,X,y,reg_normalization=False, gaussian_error_std=None, test_size=0.3,
                  random_state=None):
         """
         X................... 2D array-like of shape (n_samples, n_variables)
@@ -57,7 +57,7 @@ class GaussianLogLikelihood():
             raise ValueError("length of the binary_coef doesn't match number of variables (columns) in X")
         mask = coef > 0.
         n_samples = len(self.X_train)
-        x = np.ones((n_samples,np.sum(mask)+1))  # add one column for constant shift.
+        x = np.ones((n_samples,np.sum(mask)))
         x[:,0:np.sum(mask)] = self.X_train[:,mask]
         y = self.y_train
         refit = True
@@ -67,7 +67,7 @@ class GaussianLogLikelihood():
             self.regressor.fit(x,y)
             self.coef_treated = coef.copy()
         # calculate MSE and likelihood in the test dataset
-        x = np.ones((len(self.X_test),np.sum(mask)+1))  # add one column for constant shift.
+        x = np.ones((len(self.X_test),np.sum(mask)))
         x[:,0:np.sum(mask)] = self.X_test[:,mask]
         y = self.y_test
         mean = self.regressor.predict(x)
@@ -102,19 +102,20 @@ class GaussianLogLikelihood():
         if not len(coef) == shape[1]:
             raise ValueError("length of the binary_coef doesn't match number of variables (columns) in X")
         log_likelihood = self.__call__(coef)
-        regress_coef = np.zeros( len(coef)+1, dtype=np.float64)
+        weights = np.zeros( len(coef), dtype=np.float64)
+        bias = 0.
         mask = coef > 0.
         mask = np.append(mask,True)
-        regress_coef[mask] = self.regressor.coef_
- 
+        weights[mask] = self.regressor.coef_
+        bias = self.regressor.intercept_
         if self.reg_normalization is True:
             # put mean values into bias
-            regress_coef[-1] -= np.sum(regress_coef[:-1] * self.variables_mean_ / self.variables_std_)
+            bias -= np.sum(weights * self.variables_mean_ / self.variables_std_)
             # rescale weights
-            regress_coef[:-1] /= self.variables_std_
+            weights /= self.variables_std_
         
-        self.regress_weights_ = regress_coef[:-1]
-        self.regress_bias_ =  regress_coef[-1]
+        self.regress_weights_ = weights
+        self.regress_bias_ =  bias
 
         return self.regress_weights_, self.regress_bias_
 
