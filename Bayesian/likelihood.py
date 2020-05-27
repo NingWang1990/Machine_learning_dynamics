@@ -57,7 +57,7 @@ class GaussianLogLikelihood():
             raise ValueError("length of the binary_coef doesn't match number of variables (columns) in X")
         mask = coef > 0.
         n_samples = len(self.X_train)
-        x = np.ones((n_samples,np.sum(mask)))
+        x = np.zeros((n_samples,np.sum(mask)+1))   # always add one more zero column
         x[:,0:np.sum(mask)] = self.X_train[:,mask]
         y = self.y_train
         refit = True
@@ -67,7 +67,7 @@ class GaussianLogLikelihood():
             self.regressor.fit(x,y)
             self.coef_treated = coef.copy()
         # calculate MSE and likelihood in the test dataset
-        x = np.ones((len(self.X_test),np.sum(mask)))
+        x = np.zeros((len(self.X_test),np.sum(mask)+1))
         x[:,0:np.sum(mask)] = self.X_test[:,mask]
         y = self.y_test
         mean = self.regressor.predict(x)
@@ -105,7 +105,7 @@ class GaussianLogLikelihood():
         weights = np.zeros( len(coef), dtype=np.float64)
         bias = 0.
         mask = coef > 0.
-        weights[mask] = self.regressor.coef_
+        weights[mask] = self.regressor.coef_[:-1]    # the last coefficient should be ignored
         bias = self.regressor.intercept_
         if self.reg_normalization is True:
             # put mean values into bias
