@@ -44,7 +44,7 @@ class ComplexityLogPrior():
     @complexity_terms.setter
     def complexity_terms(self, complexity_terms):
         if isinstance(complexity_terms, float):
-            self.complexity_terms = complexity_terms
+            self._complexity_terms = complexity_terms
         elif isinstance(complexity_terms, list) or isinstance(complexity_terms, np.ndarray):
             complexity_terms = np.array(complexity_terms)
             if not complexity_terms.ndim == 1:
