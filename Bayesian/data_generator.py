@@ -4,6 +4,7 @@ from numerical_derivative import ChebyshevLocalFit_1D, ChebyshevLocalFit_2D
 from sympy.parsing.sympy_parser import parse_expr
 import sympy
 term_builders_implemented = ['multiplication']
+from util import expression_complexity
 
 class DataGenerator():
     def __init__(self,derivative_order=2, term_builders=['multiplication',],term_order_max=4):
@@ -77,9 +78,12 @@ class DataGenerator():
                 terms_all = np.concatenate([terms_all, terms],axis=1)
                 names_all += names
 
+        complexities = []
+        for name in names_all:
+            complexities += [expression_complexity(name),]
         #for i in range(len(names)):
         #    names[i] = str(names[i])
-        return terms_all, names_all
+        return terms_all, names_all, complexities
 
 
 

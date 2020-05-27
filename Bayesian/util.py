@@ -1,6 +1,19 @@
 import numpy as np 
 import itertools
+from sympy import count_ops
+import sympy
+from sympy.parsing.sympy_parser import parse_expr
 
+def expression_complexity(expr):
+    """
+    expr............string or sympy expression
+    """
+    if isinstance(expr, str):
+        expr = parse_expr(expr)
+    elif not isinstance(expr, sympy.Expr):
+        raise TypeError('expr can only be sympy exprsssion or string')
+    n_operations = count_ops(expr)
+    return 1 + n_operations
 
 def generate_binary_coef_random(length, n_samples=10):
     """

@@ -30,7 +30,6 @@ class MCMC():
         else:
             raise TypeError('log_file must be None or a string or a writable io.IOBase instance')
         
-    
     def one_step(self,current,posterior):
         """
         one step MCMC
