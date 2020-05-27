@@ -2,7 +2,7 @@ import numpy as np
 import itertools
 from numerical_derivative import ChebyshevLocalFit_1D, ChebyshevLocalFit_2D
 from sympy.parsing.sympy_parser import parse_expr
-
+import sympy
 term_builders_implemented = ['multiplication']
 
 class DataGenerator():
@@ -60,6 +60,8 @@ class DataGenerator():
 
         n_samples = data.shape[0]
         n_variables = data.shape[1]
+        terms_all = np.ones((n_samples,1))
+        names_all = [sympy.Integer(1),]
         for builder in self.term_builders:
             if builder == 'multiplication':
                 var_list = np.arange(n_variables)
@@ -72,9 +74,12 @@ class DataGenerator():
                     for j in comb:
                         terms[:,i] *= data[:,j]
                         names[i] *= sympy_exprs[j]
+                terms_all = np.concatenate([terms_all, terms],axis=1)
+                names_all += names
+
         #for i in range(len(names)):
         #    names[i] = str(names[i])
-        return terms, names
+        return terms_all, names_all
 
 
 
