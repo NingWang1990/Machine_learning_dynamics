@@ -129,12 +129,12 @@ class GaussianLogLikelihood():
             raise ValueError('X must be 2D array-like')
         if not X.shape[0] == y.shape[0]:
             raise ValueError('length of X and y must be identical')
-        stds = np.std(X, axis=0)
-        if np.any(stds == 0.):
-            indices = np.where(stds == 0.)
-            format_d = len(indices)*'%d'
-            raise ValueError('feature(s) in column '+format_d +' has (have) zero variace. ' + \
-                    'They will influence the estimation of the bias term. Please remove it (them)' % tuple(indices) )
+        #stds = np.std(X, axis=0)
+        #if np.any(stds == 0.):
+        #    indices = np.where(stds == 0.)
+        #    format_d = len(indices)*'%d'
+        #    raise ValueError('feature(s) in column '+format_d +' has (have) zero variace. ' + \
+        #            'They will influence the estimation of the bias term. Please remove it (them)' % tuple(indices) )
         return X, y
 
 
