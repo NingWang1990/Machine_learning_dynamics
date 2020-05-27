@@ -105,7 +105,6 @@ class GaussianLogLikelihood():
         weights = np.zeros( len(coef), dtype=np.float64)
         bias = 0.
         mask = coef > 0.
-        mask = np.append(mask,True)
         weights[mask] = self.regressor.coef_
         bias = self.regressor.intercept_
         if self.reg_normalization is True:
