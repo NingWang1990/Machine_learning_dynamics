@@ -30,7 +30,7 @@ class GaussianLogLikelihood():
         X,y = self.check_convert_data(X,y)
         self.gaussian_error_std = gaussian_error_std
         #self.regressor = BayesianRidge()
-        self.regressor = LinearRegression()
+        self.regressor = LinearRegression(fit_intercept=False)
         self.reg_normalization = reg_normalization 
         if reg_normalization == True:
             variables_mean_ = np.mean(X, axis=0, keepdims=True)
