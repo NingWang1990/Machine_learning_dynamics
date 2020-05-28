@@ -1,7 +1,8 @@
 
 """
 @author: Ning Wang
-adapted from https://github.com/maziarraissi/PINNs/blob/master/main/continuous_time_identification%20(Navier-Stokes)/NavierStokes.py
+adapted from https://github.com/maziarraissi/PINNs/blob/master/main/
+continuous_time_identification%20(Navier-Stokes)/NavierStokes.py
 """
 
 import tensorflow as tf
@@ -58,7 +59,8 @@ class NNSmoothing1D:
         self.t_tf = tf.placeholder(tf.float32, shape=[None, self.t.shape[1]])
         self.u_tf = tf.placeholder(tf.float32, shape=[None, self.u.shape[1]])
         
-        self.u_pred, self.u_t_pred, self.u_tt_pred, self.u_x_pred, self.u_xx_pred, self.u_xxx_pred = self.regularized_net(self.x_tf, self.t_tf)
+        self.u_pred, self.u_t_pred, self.u_tt_pred, self.u_x_pred, self.u_xx_pred, self.u_xxx_pred =\
+            self.regularized_net(self.x_tf, self.t_tf)
         
         self.loss = tf.reduce_sum(tf.square(self.u_tf - self.u_pred)) + \
                     self.alpha*tf.reduce_sum(tf.square(self.u_tt_pred)) + \
@@ -98,7 +100,7 @@ class NNSmoothing1D:
     def neural_net(self, X, weights, biases):
         num_layers = len(weights) + 1
         
-        H = 2.0*(X - self.lb)/(self.ub - self.lb) - 1.0
+        H = 1.*X
         for l in range(0,num_layers-2):
             W = weights[l]
             b = biases[l]
@@ -109,8 +111,12 @@ class NNSmoothing1D:
         return Y
         
     def regularized_net(self, x, t):
-        
-        u = self.neural_net(tf.concat([x,t], 1), self.weights, self.biases)
+         
+        x_mean = self.x_mean
+        x_std = self.x_std
+        t_mean = self.t_mean
+        t_std = self.t_std
+        u = self.neural_net(tf.concat([(x-x_mean)/x_std,(t-t_mean)/t_std], 1), self.weights, self.biases)
         
         u_t = tf.gradients(u, t)[0]
         u_x = tf.gradients(u, x)[0]
