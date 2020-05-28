@@ -1,6 +1,7 @@
+
 """
 @author: Ning Wang
-adpted from https://github.com/maziarraissi/PINNs/blob/master/main/continuous_time_identification%20(Navier-Stokes)/NavierStokes.py
+adapted from https://github.com/maziarraissi/PINNs/blob/master/main/continuous_time_identification%20(Navier-Stokes)/NavierStokes.py
 """
 
 import tensorflow as tf
@@ -12,30 +13,39 @@ import time
 np.random.seed(1234)
 tf.set_random_seed(1234)
 
-class NNSmoothing:
+class NNSmoothing1D:
     # Initialize the class
-    def __init__(self, x, t, u, layers, alpha):
-        if not layers[0] == 2:
-            raies ValueError('first layer must have two units')
-        if not layers[-1] == 1:
-            raise ValueError('last layer must have one unit')
-        X = np.concatenate([x, t], 1)
+    def __init__(self, x, t, u, hidden_layers=[10,], alpha=10.,normalization=True):
+        """
+        x.................1D array-like
+        t.................1D array-like
+        u.................1D array-like
+        y.................None or 1D array-like
+        hidden_layers.....list of int
+        alpha.............float
+        normalization.....Boolean
+        """
+        self.layers = [2,] + hidden_layers
+        self.layers += [1,]
         
-        self.lb = X.min(0)
-        self.ub = X.max(0)
-                
-        self.X = X
-        
-        self.x = X[:,0:1]
-        self.t = X[:,1:2]
-        
+               
+        self.x = x
+        self.t = t 
         self.u = u
-        
-        self.layers = layers
-        
-        # Initialize NN
-        self.weights, self.biases = self.initialize_NN(layers)        
        
+        if normalization == True:
+            sel.x_mean = np.mean(self.x)
+            self.x_std = np.std(self.x)
+            self.t_mean = np.mean(self.t)
+            self.t_std = np.std(self.t)
+        else:
+            self.x_mean = 0.
+            self.x_std = 1.
+            self.t_mean= 0.
+            self.t_std = 1.
+
+        # Initialize NN
+        self.weights, self.biases = self.initialize_NN(self.layers)        
 
         # Initialize parameters
         self.alpha = tf.Variable([alpha], dtype=tf.float32,trainable=False)
@@ -144,6 +154,30 @@ class NNSmoothing:
         u_x_star = self.sess.run(self.u_x_pred, tf_dict)
         u_xx_star = self.sess.run(self.u_xx_pred, tf_dict)
         return u_star, u_t_star, u_x_star, u_xx_star
+
+
+
+    @property 
+    def x(self):
+        return self._x
+    @x.setter
+    def x(self,x):
+        self._x = np.expand_dims(np.array(x,dtype=np.float32).flatten(),1)
+
+    @property 
+    def t(self):
+        return self._t
+    @x.setter
+    def t(self,t):
+        self._t = np.expand_dims(np.array(t,dtype=np.float32).flatten(),1)
+
+    @property 
+    def u(self):
+        return self._u
+    @x.setter
+    def u(self,u):
+        self._u = np.expand_dims(np.array(u,dtype=np.float32).flatten(),1)
+
 
 #      
 #    N_train = 5000
