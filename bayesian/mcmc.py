@@ -48,17 +48,16 @@ class MCMC():
             proposal[rand] = 1.
         else:
             proposal[rand] = 0.
-        current_logposterior = self.posterior(current)
-        posterior_backup = deepcopy(self.posterior)
-        proposal_logposterior = self.posterior(proposal)
+        current_logposterior = posterior(current)
+        posterior_backup = deepcopy(posterior)
+        proposal_logposterior = posterior(proposal)
         acceptance, prob = acceptance_judgement(current_logposterior,proposal_logposterior)
         if acceptance:
-            return proposal, prob
+            return proposal, prob, posterior
         else:
-            self.posterior = posterior_backup
-            return current, prob
+            return current, prob, posterior_backup
     
-    def __call__(self,nsteps,current, posterior, log_header=False):
+    def __call__(self,current,posterior, nsteps=100,log_header=False):
         """
         current............one D ndarray containing only 0 or 1.
         posterior.................object of LogPosterior
@@ -67,7 +66,6 @@ class MCMC():
         check_binary_oneD_array(current)
         if not isinstance(posterior, LogPosterior):
             raise TypeError('posterior must be an object of ', LogPosterior)
-        self.posterior = posterior
         if not self.log_file == None:
             if isinstance(self.log_file, str):
                 log_file = open(self.log_file,'a')
@@ -78,11 +76,11 @@ class MCMC():
         # initialize prob
         prob = 1.
         if not log_file == None: 
-            self.log(0, current, prob, log_file, log_header)
+            self.log(0, current, prob, log_file,posterior,log_header)
         for i in range(nsteps):
-            current,prob = self.one_step(current,self.posterior)
+            current, prob, posterior = self.one_step(current,posterior)
             if not log_file == None:
-                self.log(i+1, current, prob, log_file, log_header)
+                self.log(i+1, current, prob, log_file, posterior,log_header)
         
         if not self.log_file == None:
             if isinstance(self.log_file, str):
@@ -90,17 +88,17 @@ class MCMC():
 
         return current 
 
-    def log(self, step, current, prob, log_file,log_header=True):
+    def log(self, step, current, prob, log_file, posterior,log_header=True):
         if not (isinstance(log_file, io.IOBase) and  log_file.writable()):
             raise TypeError('log_file must be writable io.IOBase instance')
                
         #log_posterior = self.posterior.log_posterior_
         #log_prior = self.posterior.prior.log_prior_
         #log_likelihood = self.posterior.likelihood.log_likelihood_
-        log_posterior = self.posterior(current)
-        log_prior = self.posterior.prior(current)
-        log_likelihood = self.posterior.likelihood(current)
-        weights,bias = self.posterior.likelihood.get_weights_bias(current)
+        log_posterior = posterior(current)
+        log_prior = posterior.prior(current)
+        log_likelihood = posterior.likelihood(current)
+        weights,bias = posterior.likelihood.get_weights_bias(current)
 
         if step == 0:
             if log_header == True:

@@ -256,7 +256,7 @@ class ParetoSet(SortedKeyList):
         """
         if not isinstance(file_name, str):
             raise TypeError('file_name must be a string')
-        outf = open(file_name,'a')
+        outf = open(file_name,'w')
         out_csv = csv.writer(outf)
         out_csv.writerow(['x','y','data'])
         for point in self:

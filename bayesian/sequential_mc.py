@@ -5,16 +5,20 @@ import sympy
 import io
 import csv
 from get_pareto import ParetoPoint, ParetoSet
-
+from multiprocessing import Pool
+from functools import partial
 class SequentialMC():
-    def __init__(self, posterior, mcmc=None,log_file=None, pareto_set=ParetoSet()):
+    def __init__(self, posterior, mcmc=None,log_file=None,pareto_filename=None, pareto_set=ParetoSet(),parallel=False):
         """
         posterior........... object of the class LogPosterior
         mcmc................ None or object of the class MCMC
         log_file............ None or string or a writable io.IOBase instance.
                              None: no log file. don't write out anything
                              string: name of the log file
-        pareto_set..... object of the class PaeretoSet. 
+        pareto_filename..... None or string.
+                             None: don't write out Pareto set
+                             string, write out Pareto set. filename: this string@str(step).csv
+        pareto_set.......... object of the class PaeretoSet. 
                              the initial pareto set. The new points generated in __call__
                              will be added into it.
         """
@@ -22,15 +26,22 @@ class SequentialMC():
             self.log_file = log_file
         else:
             raise TypeError('log_file must be None or a string or a writable io.IOBase instance')
+        
+        if (pareto_filename==None) or isinstance(pareto_filename,str):
+            self.pareto_filename = pareto_filename
+        else:
+            raise TypeError('log_file must be None or a string or a writable io.IOBase instance')
 
+            
         if not isinstance(pareto_set, ParetoSet):
             raise TypeError('init_pareto_set must be an object of ', ParetoSet)
 
         self.posterior = posterior
         self.mcmc = mcmc
         self.pareto_set = pareto_set
+        self.parallel = parallel
 
-    def __call__(self, samples, feature_descriptions, beta0_nsteps=100, beta0to1_nsteps=100,beta1_nsteps=100,mcmc_nsteps=100):
+    def __call__(self, samples, feature_descriptions, beta0_nsteps=100, beta0to1_nsteps=100,beta1_nsteps=100,mcmc_nsteps=100,writeout_interval=100):
         """
         samples.....................ndarray of shape (n_samples, n_features)
                                     initial samples to perform sequential MC  
@@ -59,7 +70,8 @@ class SequentialMC():
     
         for sample in samples:
             self.add_to_ParetoSet(sample, feature_descriptions)
-
+    
+        
         for i,beta in enumerate(betas):
             print ('step: %d, beta: %6.3f' % (i, beta))
             # set beta
@@ -71,14 +83,24 @@ class SequentialMC():
             #resampling
             re_samples = self.resample(uniques,size,p )
             # mcmc
-            for j,sample in enumerate(re_samples):
-                samples[j] = self.mcmc(nsteps=mcmc_nsteps, current=sample,posterior=self.posterior,log_header=False)
+            if self.parallel is True:
+                mcmc_func = partial(self.mcmc, nsteps=mcmc_nsteps, posterior=self.posterior, log_header=False)
+                pool = Pool()
+                samples = pool.map(mcmc_func, list(re_samples))
+            else:
+                # serial 
+                for j,sample in enumerate(re_samples):
+                    samples[j] = self.mcmc(nsteps=mcmc_nsteps, current=sample,posterior=self.posterior,log_header=False)
             
-            if not out_csv == None:
-                self.log(i+1, samples, feature_descriptions, out_csv)
-
             for sample in samples:
                 self.add_to_ParetoSet(sample, feature_descriptions)
+            
+            if i%writeout_interval == 0:
+                if not out_csv == None:
+                    self.log(i+1, samples, feature_descriptions, out_csv)
+                if not self.pareto_filename is None:
+                    self.pareto_set.save_csv(self.pareto_filename+'@'+str(i)+'.csv')      
+            
 
         if not self.log_file == None:
             if isinstance(self.log_file, str):
@@ -193,7 +215,7 @@ class SequentialMC():
             row += [ str(expr),]
         out_csv.writerow(row)
 
-    # data encapsulation   
+    # data encapsulation
     @property
     def mcmc(self):
         return self._mcmc
@@ -205,7 +227,7 @@ class SequentialMC():
             self._mcmc = mcmc
         else:
             self._mcmc = MCMC()
-    
+
     @property
     def posterior(self):
         return self._posterior
@@ -214,4 +236,3 @@ class SequentialMC():
         if not isinstance(posterior, LogPosterior):
             raise TypeError('posterior must be an object of ', LogPosterior)
         self._posterior = posterior
-
