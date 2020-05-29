@@ -113,7 +113,7 @@ class SequentialMC():
         add sample to ParetoSet
         """
         complexity = self.posterior.prior.evaluate_complexity(sample)
-        mse = self.posterior.likelihood.get_regression_MSE(sample)
+        mse = self.posterior.likelihood.get_model_metric(sample)
         weights,bias = self.posterior.likelihood.get_weights_bias(sample)
         expr = self.construct_linear_expression(weights, bias,feature_descriptions)
         pareto_point = ParetoPoint(x=complexity, y=mse, data=expr)
