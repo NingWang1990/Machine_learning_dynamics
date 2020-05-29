@@ -7,28 +7,27 @@ term_builders_implemented = ['multiplication']
 from util import expression_complexity
 
 class DataGenerator():
-    def __init__(self,derivative_order=2, term_builders=['multiplication',],term_order_max=4):
+    def __init__(self, term_builders=['multiplication',]):
         
         """
-        derivative_order.... int, the highest order of derivatives to be included in the expression
         term_builders........list of str. All elements should be in term_buliders_implemented.
-                             used to build terms.
-        term_order_max.......int, maximum term order 
-        width................int, the width to fit the 
-        """
+                             Iused to build terms.
+                """
 
         for tb in term_builders:
             if not tb in term_builders_implemented:
                 raise ValueError( tb, " not implemented. Choose term_builders from ",term_builders_implemented )
         
         self.term_builders = term_builders
-        self.term_order_max = term_order_max
 
-    def __call__(self, data,descriptions):
+    def __call__(self, data,descriptions,term_order_max=4):
         
         """
         data................. ndarray of shape (n_samples, n_variables)
         descriptions......... list of string or sympy expressions, descriptions of each column (variable)
+        term_order_max.......int or list of int,  
+                             if int, specify the same maximum order for each term.
+                             if list, specify maximum order for each term separately.
         """
 
         """
@@ -58,6 +57,15 @@ class DataGenerator():
                 sympy_exprs += [desp,]
             else:
                 raise TypeError('elements of descriptions should be string or sympy expression')
+    
+        if isinstance(term_order_max, int):
+            term_orders_max = np.array(len(sympy_exprs) * [term_order_max,],np.int32)
+        else:
+            term_orders_max = np.array(term_order_max,np.int32)
+            if (not term_orders_max.ndim == 1):
+                raise TypeError('term order max must be 1D')
+            elif (not len(term_orders_max) == len(sympy_exprs)):
+                raise TypeError('length of term_order_max inconsistent with descriptions')
 
         n_samples = data.shape[0]
         n_variables = data.shape[1]
@@ -67,7 +75,7 @@ class DataGenerator():
             if builder == 'multiplication':
                 var_list = np.arange(n_variables)
                 combinations = []
-                for i in range(1,len(var_list)+1):
+                for i in range(1,self.term_order_max+1):
                     combinations += list(itertools.combinations_with_replacement(var_list, i))
                 terms = np.ones((n_samples,len(combinations)))
                 names = len(combinations)*[parse_expr('1'),]
