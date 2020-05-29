@@ -59,12 +59,12 @@ class DataGenerator():
                 raise TypeError('elements of descriptions should be string or sympy expression')
     
         if isinstance(term_order_max, int):
-            term_orders_max = np.array(len(sympy_exprs) * [term_order_max,],np.int32)
+            term_order_max = np.array(len(sympy_exprs) * [term_order_max,],np.int64)
         else:
-            term_orders_max = np.array(term_order_max,np.int32)
-            if (not term_orders_max.ndim == 1):
+            term_order_max = np.array(term_order_max,np.int64)
+            if (not term_order_max.ndim == 1):
                 raise TypeError('term order max must be 1D')
-            elif (not len(term_orders_max) == len(sympy_exprs)):
+            elif (not len(term_order_max) == len(sympy_exprs)):
                 raise TypeError('length of term_order_max inconsistent with descriptions')
 
         n_samples = data.shape[0]
@@ -75,8 +75,21 @@ class DataGenerator():
             if builder == 'multiplication':
                 var_list = np.arange(n_variables)
                 combinations = []
-                for i in range(1,self.term_order_max+1):
+                # generate all possible combinations
+                for i in range(1,np.max(term_order_max)+1):
                     combinations += list(itertools.combinations_with_replacement(var_list, i))
+                # to remove combinations that exceeds maximum order
+                indices_del = []
+                
+                for i,order in enumerate(term_order_max):
+                    for j, comb in enumerate(combinations):
+                        tt = np.array(comb, np.int64)
+                        if np.sum(tt==i) > order:
+                            indices_del.append(j)
+                indices_del = np.unique(indices_del)
+                for i in sorted(indices_del, reverse=True):
+                    del combinations[i]
+
                 terms = np.ones((n_samples,len(combinations)))
                 names = len(combinations)*[parse_expr('1'),]
                 for i,comb in enumerate(combinations):
