@@ -57,7 +57,6 @@ class DataGenerator():
                 sympy_exprs += [desp,]
             else:
                 raise TypeError('elements of descriptions should be string or sympy expression')
-    
         if isinstance(term_order_max, int):
             term_order_max = np.array(len(sympy_exprs) * [term_order_max,],np.int64)
         else:
@@ -95,7 +94,13 @@ class DataGenerator():
                 for i,comb in enumerate(combinations):
                     for j in comb:
                         terms[:,i] *= data[:,j]
-                        names[i] *= sympy_exprs[j]
+                        try:
+                            names[i] *= sympy_exprs[j]
+                        except:
+                            print ('failed to multiply names by:', sympy_exprs[j])
+                            print ('most likely it is because the improper string description:', descriptions[j])
+                            print ('try to use a different description and rerun this function')
+                            raise
                 terms_all = np.concatenate([terms_all, terms],axis=1)
                 names_all += names
 
