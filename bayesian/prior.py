@@ -3,7 +3,7 @@ from error_checker import check_binary_oneD_array
 
 class ComplexityLogPrior():
     
-    def __init__(self,simplicity_preference=0.,complexity_terms=1.):
+    def __init__(self,simplicity_preference=1., complexity_terms=1.):
         """
         simplicity_preference.....positive float. A larger value leads to a simpler expression.
                                                   the default value 0. means no preference and 
