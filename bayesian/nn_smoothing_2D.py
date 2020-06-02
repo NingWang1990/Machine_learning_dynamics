@@ -15,7 +15,7 @@ tf.set_random_seed(1234)
 
 class NNSmoothing2D:
     # Initialize the class
-    def __init__(self, x, y, t, u, hidden_layers, alpha):
+    def __init__(self, x, y, t, u, hidden_layers=[20,20,20,20,20,20], alpha=0.1):
         
         layers = [3,] + hidden_layers + [1,]
         self.x = x
@@ -43,12 +43,12 @@ class NNSmoothing2D:
         # model
         self.u_pred = self.neural_net(tf.concat([self.x_tf,self.y_tf,self.t_tf], 1), self.weights, self.biases)
         self.build_grads() 
-        self.loss = tf.reduce_sum(tf.square(self.u_tf - self.u_pred)) + \
-                    self.alpha*(tf.reduce_sum(tf.square(self.u_tt_pred)) + \
-                    tf.reduce_sum(tf.square(self.u_xxx_pred)) +  \
-                    tf.reduce_sum(tf.square(self.u_xxy_pred)) + \
-                    tf.reduce_sum(tf.square(self.u_xyy_pred)) + \
-                    tf.reduce_sum(tf.square(self.u_yyy_pred)) )
+        self.loss = tf.reduce_mean(tf.square(self.u_tf - self.u_pred)) + \
+                    self.alpha*(tf.reduce_mean(tf.square(self.u_tt_pred)) + \
+                    tf.reduce_mean(tf.square(self.u_xxx_pred)) +  \
+                    tf.reduce_mean(tf.square(self.u_xxy_pred)) + \
+                    tf.reduce_mean(tf.square(self.u_xyy_pred)) + \
+                    tf.reduce_mean(tf.square(self.u_yyy_pred)) )
                     
         self.optimizer = tf.contrib.opt.ScipyOptimizerInterface(self.loss, 
                                                                 method = 'L-BFGS-B', 

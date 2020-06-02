@@ -15,7 +15,7 @@ tf.set_random_seed(1234)
 
 class NNSmoothing1D:
     # Initialize the class
-    def __init__(self, x, t, u, hidden_layers, alpha):
+    def __init__(self, x, t, u, hidden_layers=[20,20,20,20,20,20], alpha=0.1):
         
         layers = [2,] + hidden_layers + [1,]
         self.x = x

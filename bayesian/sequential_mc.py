@@ -70,7 +70,8 @@ class SequentialMC():
     
         for sample in samples:
             self.add_to_ParetoSet(sample, feature_descriptions)
-    
+        if not self.pareto_filename is None:
+            self.pareto_set.save_csv(self.pareto_filename+'@'+str(0)+'.csv')      
         
         for i,beta in enumerate(betas):
             print ('step: %d, beta: %6.3f' % (i, beta))
@@ -95,11 +96,11 @@ class SequentialMC():
             for sample in samples:
                 self.add_to_ParetoSet(sample, feature_descriptions)
             
-            if i%writeout_interval == 0:
+            if (i+1)%writeout_interval == 0:
                 if not out_csv == None:
                     self.log(i+1, samples, feature_descriptions, out_csv)
                 if not self.pareto_filename is None:
-                    self.pareto_set.save_csv(self.pareto_filename+'@'+str(i)+'.csv')      
+                    self.pareto_set.save_csv(self.pareto_filename+'@'+str(i+1)+'.csv')      
             
 
         if not self.log_file == None:

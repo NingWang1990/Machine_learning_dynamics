@@ -3,10 +3,8 @@ from error_checker import check_binary_oneD_array
 
 class ComplexityLogPrior():
     
-    def __init__(self,method='num_terms',simplicity_preference=0.,complexity_terms=1.):
+    def __init__(self,simplicity_preference=0.,complexity_terms=1.):
         """
-        method....................str, method to calculate complexity. 
-                                  it should be the member of methods_implemented
         simplicity_preference.....positive float. A larger value leads to a simpler expression.
                                                   the default value 0. means no preference and 
                                                   each expression has the same prior probability
@@ -16,7 +14,6 @@ class ComplexityLogPrior():
                                   corresponding term
         """
 
-        self.method = method
         self.simplicity_preference = simplicity_preference
         self.complexity_terms = complexity_terms
     
