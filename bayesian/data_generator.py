@@ -20,14 +20,14 @@ class DataGenerator():
         
         self.term_builders = term_builders
 
-    def __call__(self, data,descriptions,term_order_max=4):
+    def __call__(self, data,descriptions,term_order_max=4,variables_order_max=None):
         
         """
         data................. ndarray of shape (n_samples, n_variables)
         descriptions......... list of string or sympy expressions, descriptions of each column (variable)
-        term_order_max.......int or list of int,  
-                             if int, specify the same maximum order for each term.
-                             if list, specify maximum order for each term separately.
+        term_order_max....... int, specify the same maximum order for each term.
+        variables_order_max.. None or 1D array-like.
+                              if list, specify maximum order for each variable.
         """
 
         """
@@ -57,14 +57,14 @@ class DataGenerator():
                 sympy_exprs += [desp,]
             else:
                 raise TypeError('elements of descriptions should be string or sympy expression')
-        if isinstance(term_order_max, int):
-            term_order_max = np.array(len(sympy_exprs) * [term_order_max,],np.int64)
-        else:
-            term_order_max = np.array(term_order_max,np.int64)
-            if (not term_order_max.ndim == 1):
-                raise TypeError('term order max must be 1D')
-            elif (not len(term_order_max) == len(sympy_exprs)):
-                raise TypeError('length of term_order_max inconsistent with descriptions')
+        if not isinstance(term_order_max, int):
+            raise TypeError('term_order_max must be int')
+        if variables_order_max is not None:
+            variables_order_max = np.array(variables_order_max, np.int64)
+            if (not variables_order_max.ndim == 1):
+                raise TypeError('variables_order_max must be 1D array-like')
+            elif (not len(variables_order_max) == len(sympy_exprs)):
+                raise TypeError('length of variables_order_max inconsistent with descriptions')
 
         n_samples = data.shape[0]
         n_variables = data.shape[1]
@@ -75,19 +75,19 @@ class DataGenerator():
                 var_list = np.arange(n_variables)
                 combinations = []
                 # generate all possible combinations
-                for i in range(1,np.max(term_order_max)+1):
+                for i in range(1,term_order_max+1):
                     combinations += list(itertools.combinations_with_replacement(var_list, i))
-                # to remove combinations that exceeds maximum order
-                indices_del = []
-                
-                for i,order in enumerate(term_order_max):
-                    for j, comb in enumerate(combinations):
-                        tt = np.array(comb, np.int64)
-                        if np.sum(tt==i) > order:
-                            indices_del.append(j)
-                indices_del = np.unique(indices_del)
-                for i in sorted(indices_del, reverse=True):
-                    del combinations[i]
+                if variables_order_max is not None:
+                    # to remove combinations that exceeds maximum order for variables
+                    indices_del = []
+                    for i,order in enumerate(variables_order_max):
+                        for j, comb in enumerate(combinations):
+                            tt = np.array(comb, np.int64)
+                            if np.sum(tt==i) > order:
+                                indices_del.append(j)
+                    indices_del = np.unique(indices_del)
+                    for i in sorted(indices_del, reverse=True):
+                        del combinations[i]
 
                 terms = np.ones((n_samples,len(combinations)))
                 names = len(combinations)*[parse_expr('1'),]
