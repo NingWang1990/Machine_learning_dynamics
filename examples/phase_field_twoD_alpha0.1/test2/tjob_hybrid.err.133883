@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "test_experimental_data_2D.py", line 55, in <module>
+    pareto_set = sequentialmc(samples=init_coefs,beta0_nsteps=100,beta0to1_nsteps=1000,beta1_nsteps=1000, mcmc_nsteps=10,feature_descriptions=names,writeout_interval=100 )
+  File "/u/wangnisn/devel/Machine_learning_dynamics/bayesian/sequential_mc.py", line 94, in __call__
+    samples[j] = self.mcmc(nsteps=mcmc_nsteps, current=sample,posterior=self.posterior,log_header=False)
+  File "/u/wangnisn/devel/Machine_learning_dynamics/bayesian/mcmc.py", line 81, in __call__
+    current, prob, posterior = self.one_step(current,posterior)
+  File "/u/wangnisn/devel/Machine_learning_dynamics/bayesian/mcmc.py", line 53, in one_step
+    proposal_logposterior = posterior(proposal)
+  File "/u/wangnisn/devel/Machine_learning_dynamics/bayesian/posterior.py", line 33, in __call__
+    loglikelihood = self.likelihood(coef)
+  File "/u/wangnisn/devel/Machine_learning_dynamics/bayesian/likelihood.py", line 98, in __call__
+    err, rc = self.regression(X_train, y_train, X_test, y_test, mask)
+  File "/u/wangnisn/devel/Machine_learning_dynamics/bayesian/likelihood.py", line 132, in regression
+    self.regressor.fit(X_train[:,mask],y_train)
+  File "/u/wangnisn/.local/lib/python3.7/site-packages/sklearn/linear_model/_base.py", line 547, in fit
+    linalg.lstsq(X, y)
+  File "/mpcdf/soft/SLE_15/packages/x86_64/anaconda/3/2019.03/lib/python3.7/site-packages/scipy/linalg/basic.py", line 1241, in lstsq
+    raise LinAlgError("SVD did not converge in Linear Least Squares")
+numpy.linalg.LinAlgError: SVD did not converge in Linear Least Squares
+srun: error: talos061: task 0: Exited with exit code 1
+srun: Terminating job step 133883.0

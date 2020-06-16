@@ -1,0 +1,281 @@
+----------------------------------------------------------------------------
+                                                   Mon Jun  1 21:28:21 2020
+
+ Hello Ning Wang,
+
+                                                       
+ Welcome to TALOS. 
+
+ 
+============================================================================
+
+	https://www.mpcdf.mpg.de/services/computing/linux/TALOS
+
+- IMPORTANT: /talos/scratch is NOT backed up on this system. 
+        You have to archive your data in those directory by yourself.
+
+============================================================================
+----------------------------------------------------------------------------
+0 1
+1 u
+2 u_x
+3 u_y
+4 u_xx
+5 u_xy
+6 u_yy
+7 u**2
+8 u*u_x
+9 u*u_y
+10 u*u_xx
+11 u*u_xy
+12 u*u_yy
+13 u_x**2
+14 u_x*u_y
+15 u_x*u_xx
+16 u_x*u_xy
+17 u_x*u_yy
+18 u_y**2
+19 u_xx*u_y
+20 u_xy*u_y
+21 u_y*u_yy
+22 u_xx*u_xy
+23 u_xx*u_yy
+24 u_xy*u_yy
+25 u**3
+26 u**2*u_x
+27 u**2*u_y
+28 u**2*u_xx
+29 u**2*u_xy
+30 u**2*u_yy
+31 u*u_x**2
+32 u*u_x*u_y
+33 u*u_x*u_xx
+34 u*u_x*u_xy
+35 u*u_x*u_yy
+36 u*u_y**2
+37 u*u_xx*u_y
+38 u*u_xy*u_y
+39 u*u_y*u_yy
+40 u*u_xx*u_xy
+41 u*u_xx*u_yy
+42 u*u_xy*u_yy
+43 u_x**2*u_y
+44 u_x**2*u_xx
+45 u_x**2*u_xy
+46 u_x**2*u_yy
+47 u_x*u_y**2
+48 u_x*u_xx*u_y
+49 u_x*u_xy*u_y
+50 u_x*u_y*u_yy
+51 u_x*u_xx*u_xy
+52 u_x*u_xx*u_yy
+53 u_x*u_xy*u_yy
+54 u_xx*u_y**2
+55 u_xy*u_y**2
+56 u_y**2*u_yy
+57 u_xx*u_xy*u_y
+58 u_xx*u_y*u_yy
+59 u_xy*u_y*u_yy
+60 u_xx*u_xy*u_yy
+61 u**4
+62 u**3*u_x
+63 u**3*u_y
+64 u**3*u_xx
+65 u**3*u_xy
+66 u**3*u_yy
+67 u**2*u_x**2
+68 u**2*u_x*u_y
+69 u**2*u_x*u_xx
+70 u**2*u_x*u_xy
+71 u**2*u_x*u_yy
+72 u**2*u_y**2
+73 u**2*u_xx*u_y
+74 u**2*u_xy*u_y
+75 u**2*u_y*u_yy
+76 u**2*u_xx*u_xy
+77 u**2*u_xx*u_yy
+78 u**2*u_xy*u_yy
+79 u*u_x**2*u_y
+80 u*u_x**2*u_xx
+81 u*u_x**2*u_xy
+82 u*u_x**2*u_yy
+83 u*u_x*u_y**2
+84 u*u_x*u_xx*u_y
+85 u*u_x*u_xy*u_y
+86 u*u_x*u_y*u_yy
+87 u*u_x*u_xx*u_xy
+88 u*u_x*u_xx*u_yy
+89 u*u_x*u_xy*u_yy
+90 u*u_xx*u_y**2
+91 u*u_xy*u_y**2
+92 u*u_y**2*u_yy
+93 u*u_xx*u_xy*u_y
+94 u*u_xx*u_y*u_yy
+95 u*u_xy*u_y*u_yy
+96 u*u_xx*u_xy*u_yy
+97 u_x**2*u_y**2
+98 u_x**2*u_xx*u_y
+99 u_x**2*u_xy*u_y
+100 u_x**2*u_y*u_yy
+101 u_x**2*u_xx*u_xy
+102 u_x**2*u_xx*u_yy
+103 u_x**2*u_xy*u_yy
+104 u_x*u_xx*u_y**2
+105 u_x*u_xy*u_y**2
+106 u_x*u_y**2*u_yy
+107 u_x*u_xx*u_xy*u_y
+108 u_x*u_xx*u_y*u_yy
+109 u_x*u_xy*u_y*u_yy
+110 u_x*u_xx*u_xy*u_yy
+111 u_xx*u_xy*u_y**2
+112 u_xx*u_y**2*u_yy
+113 u_xy*u_y**2*u_yy
+114 u_xx*u_xy*u_y*u_yy
+step: 0, beta:  0.000
+step: 1, beta:  0.000
+step: 2, beta:  0.000
+step: 3, beta:  0.000
+step: 4, beta:  0.000
+step: 5, beta:  0.000
+step: 6, beta:  0.000
+step: 7, beta:  0.000
+step: 8, beta:  0.000
+step: 9, beta:  0.000
+step: 10, beta:  0.000
+step: 11, beta:  0.000
+step: 12, beta:  0.000
+step: 13, beta:  0.000
+step: 14, beta:  0.000
+step: 15, beta:  0.000
+step: 16, beta:  0.000
+step: 17, beta:  0.000
+step: 18, beta:  0.000
+step: 19, beta:  0.000
+step: 20, beta:  0.000
+step: 21, beta:  0.000
+step: 22, beta:  0.000
+step: 23, beta:  0.000
+step: 24, beta:  0.000
+step: 25, beta:  0.000
+step: 26, beta:  0.000
+step: 27, beta:  0.000
+step: 28, beta:  0.000
+step: 29, beta:  0.000
+step: 30, beta:  0.000
+step: 31, beta:  0.000
+step: 32, beta:  0.000
+step: 33, beta:  0.000
+step: 34, beta:  0.000
+step: 35, beta:  0.000
+step: 36, beta:  0.000
+step: 37, beta:  0.000
+step: 38, beta:  0.000
+step: 39, beta:  0.000
+step: 40, beta:  0.000
+step: 41, beta:  0.000
+step: 42, beta:  0.000
+step: 43, beta:  0.000
+step: 44, beta:  0.000
+step: 45, beta:  0.000
+step: 46, beta:  0.000
+step: 47, beta:  0.000
+step: 48, beta:  0.000
+step: 49, beta:  0.000
+step: 50, beta:  0.000
+step: 51, beta:  0.000
+step: 52, beta:  0.000
+step: 53, beta:  0.000
+step: 54, beta:  0.000
+step: 55, beta:  0.000
+step: 56, beta:  0.000
+step: 57, beta:  0.000
+step: 58, beta:  0.000
+step: 59, beta:  0.000
+step: 60, beta:  0.000
+step: 61, beta:  0.000
+step: 62, beta:  0.000
+step: 63, beta:  0.000
+step: 64, beta:  0.000
+step: 65, beta:  0.000
+step: 66, beta:  0.000
+step: 67, beta:  0.000
+step: 68, beta:  0.000
+step: 69, beta:  0.000
+step: 70, beta:  0.000
+step: 71, beta:  0.000
+step: 72, beta:  0.000
+step: 73, beta:  0.000
+step: 74, beta:  0.000
+step: 75, beta:  0.000
+step: 76, beta:  0.000
+step: 77, beta:  0.000
+step: 78, beta:  0.000
+step: 79, beta:  0.000
+step: 80, beta:  0.000
+step: 81, beta:  0.000
+step: 82, beta:  0.000
+step: 83, beta:  0.000
+step: 84, beta:  0.000
+step: 85, beta:  0.000
+step: 86, beta:  0.000
+step: 87, beta:  0.000
+step: 88, beta:  0.000
+step: 89, beta:  0.000
+step: 90, beta:  0.000
+step: 91, beta:  0.000
+step: 92, beta:  0.000
+step: 93, beta:  0.000
+step: 94, beta:  0.000
+step: 95, beta:  0.000
+step: 96, beta:  0.000
+step: 97, beta:  0.000
+step: 98, beta:  0.000
+step: 99, beta:  0.000
+step: 100, beta:  0.000
+step: 101, beta:  0.001
+step: 102, beta:  0.002
+step: 103, beta:  0.003
+step: 104, beta:  0.004
+step: 105, beta:  0.005
+step: 106, beta:  0.006
+step: 107, beta:  0.007
+step: 108, beta:  0.008
+step: 109, beta:  0.009
+step: 110, beta:  0.010
+step: 111, beta:  0.011
+step: 112, beta:  0.012
+step: 113, beta:  0.013
+step: 114, beta:  0.014
+step: 115, beta:  0.015
+step: 116, beta:  0.016
+step: 117, beta:  0.017
+step: 118, beta:  0.018
+step: 119, beta:  0.019
+step: 120, beta:  0.020
+step: 121, beta:  0.021
+step: 122, beta:  0.022
+step: 123, beta:  0.023
+step: 124, beta:  0.024
+step: 125, beta:  0.025
+step: 126, beta:  0.026
+step: 127, beta:  0.027
+step: 128, beta:  0.028
+step: 129, beta:  0.029
+step: 130, beta:  0.030
+step: 131, beta:  0.031
+step: 132, beta:  0.032
+step: 133, beta:  0.033
+step: 134, beta:  0.034
+step: 135, beta:  0.035
+step: 136, beta:  0.036
+step: 137, beta:  0.037
+step: 138, beta:  0.038
+step: 139, beta:  0.039
+step: 140, beta:  0.040
+step: 141, beta:  0.041
+step: 142, beta:  0.042
+step: 143, beta:  0.043
+step: 144, beta:  0.044
+step: 145, beta:  0.045
+step: 146, beta:  0.046
+step: 147, beta:  0.047

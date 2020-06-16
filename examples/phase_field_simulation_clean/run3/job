@@ -1,0 +1,29 @@
+#!/bin/bash -l
+# Standard output and error:
+#SBATCH -o ./tjob_hybrid.out.%j
+#SBATCH -e ./tjob_hybrid.err.%j
+# Initial working directory:
+#SBATCH -D ./
+# Job Name:
+#SBATCH -J test3
+# Queue (Partition):
+#SBATCH --partition=s.talos
+# Number of nodes and MPI tasks per node:
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+# for OpenMP:
+#SBATCH --cpus-per-task=40
+#
+#SBATCH --mail-type=none
+#SBATCH --mail-user=nwang@mpie.de
+#
+# Wall clock limit:
+#SBATCH --time=48:00:00
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+# For pinning threads correctly:
+export OMP_PLACES=cores 
+
+
+# Run the program:
+srun python with_nn_smoothing.py 

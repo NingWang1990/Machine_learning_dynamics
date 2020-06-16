@@ -1,0 +1,1090 @@
+----------------------------------------------------------------------------
+                                                   Mon Jun  1 21:28:22 2020
+
+ Hello Ning Wang,
+
+                                                       
+ Welcome to TALOS. 
+
+ 
+============================================================================
+
+	https://www.mpcdf.mpg.de/services/computing/linux/TALOS
+
+- IMPORTANT: /talos/scratch is NOT backed up on this system. 
+        You have to archive your data in those directory by yourself.
+
+============================================================================
+----------------------------------------------------------------------------
+0 1
+1 u
+2 u_x
+3 u_y
+4 u_xx
+5 u_xy
+6 u_yy
+7 u**2
+8 u*u_x
+9 u*u_y
+10 u*u_xx
+11 u*u_xy
+12 u*u_yy
+13 u_x**2
+14 u_x*u_y
+15 u_x*u_xx
+16 u_x*u_xy
+17 u_x*u_yy
+18 u_y**2
+19 u_xx*u_y
+20 u_xy*u_y
+21 u_y*u_yy
+22 u_xx*u_xy
+23 u_xx*u_yy
+24 u_xy*u_yy
+25 u**3
+26 u**2*u_x
+27 u**2*u_y
+28 u**2*u_xx
+29 u**2*u_xy
+30 u**2*u_yy
+31 u*u_x**2
+32 u*u_x*u_y
+33 u*u_x*u_xx
+34 u*u_x*u_xy
+35 u*u_x*u_yy
+36 u*u_y**2
+37 u*u_xx*u_y
+38 u*u_xy*u_y
+39 u*u_y*u_yy
+40 u*u_xx*u_xy
+41 u*u_xx*u_yy
+42 u*u_xy*u_yy
+43 u_x**2*u_y
+44 u_x**2*u_xx
+45 u_x**2*u_xy
+46 u_x**2*u_yy
+47 u_x*u_y**2
+48 u_x*u_xx*u_y
+49 u_x*u_xy*u_y
+50 u_x*u_y*u_yy
+51 u_x*u_xx*u_xy
+52 u_x*u_xx*u_yy
+53 u_x*u_xy*u_yy
+54 u_xx*u_y**2
+55 u_xy*u_y**2
+56 u_y**2*u_yy
+57 u_xx*u_xy*u_y
+58 u_xx*u_y*u_yy
+59 u_xy*u_y*u_yy
+60 u_xx*u_xy*u_yy
+61 u**4
+62 u**3*u_x
+63 u**3*u_y
+64 u**3*u_xx
+65 u**3*u_xy
+66 u**3*u_yy
+67 u**2*u_x**2
+68 u**2*u_x*u_y
+69 u**2*u_x*u_xx
+70 u**2*u_x*u_xy
+71 u**2*u_x*u_yy
+72 u**2*u_y**2
+73 u**2*u_xx*u_y
+74 u**2*u_xy*u_y
+75 u**2*u_y*u_yy
+76 u**2*u_xx*u_xy
+77 u**2*u_xx*u_yy
+78 u**2*u_xy*u_yy
+79 u*u_x**2*u_y
+80 u*u_x**2*u_xx
+81 u*u_x**2*u_xy
+82 u*u_x**2*u_yy
+83 u*u_x*u_y**2
+84 u*u_x*u_xx*u_y
+85 u*u_x*u_xy*u_y
+86 u*u_x*u_y*u_yy
+87 u*u_x*u_xx*u_xy
+88 u*u_x*u_xx*u_yy
+89 u*u_x*u_xy*u_yy
+90 u*u_xx*u_y**2
+91 u*u_xy*u_y**2
+92 u*u_y**2*u_yy
+93 u*u_xx*u_xy*u_y
+94 u*u_xx*u_y*u_yy
+95 u*u_xy*u_y*u_yy
+96 u*u_xx*u_xy*u_yy
+97 u_x**2*u_y**2
+98 u_x**2*u_xx*u_y
+99 u_x**2*u_xy*u_y
+100 u_x**2*u_y*u_yy
+101 u_x**2*u_xx*u_xy
+102 u_x**2*u_xx*u_yy
+103 u_x**2*u_xy*u_yy
+104 u_x*u_xx*u_y**2
+105 u_x*u_xy*u_y**2
+106 u_x*u_y**2*u_yy
+107 u_x*u_xx*u_xy*u_y
+108 u_x*u_xx*u_y*u_yy
+109 u_x*u_xy*u_y*u_yy
+110 u_x*u_xx*u_xy*u_yy
+111 u_xx*u_xy*u_y**2
+112 u_xx*u_y**2*u_yy
+113 u_xy*u_y**2*u_yy
+114 u_xx*u_xy*u_y*u_yy
+step: 0, beta:  0.000
+step: 1, beta:  0.000
+step: 2, beta:  0.000
+step: 3, beta:  0.000
+step: 4, beta:  0.000
+step: 5, beta:  0.000
+step: 6, beta:  0.000
+step: 7, beta:  0.000
+step: 8, beta:  0.000
+step: 9, beta:  0.000
+step: 10, beta:  0.000
+step: 11, beta:  0.000
+step: 12, beta:  0.000
+step: 13, beta:  0.000
+step: 14, beta:  0.000
+step: 15, beta:  0.000
+step: 16, beta:  0.000
+step: 17, beta:  0.000
+step: 18, beta:  0.000
+step: 19, beta:  0.000
+step: 20, beta:  0.000
+step: 21, beta:  0.000
+step: 22, beta:  0.000
+step: 23, beta:  0.000
+step: 24, beta:  0.000
+step: 25, beta:  0.000
+step: 26, beta:  0.000
+step: 27, beta:  0.000
+step: 28, beta:  0.000
+step: 29, beta:  0.000
+step: 30, beta:  0.000
+step: 31, beta:  0.000
+step: 32, beta:  0.000
+step: 33, beta:  0.000
+step: 34, beta:  0.000
+step: 35, beta:  0.000
+step: 36, beta:  0.000
+step: 37, beta:  0.000
+step: 38, beta:  0.000
+step: 39, beta:  0.000
+step: 40, beta:  0.000
+step: 41, beta:  0.000
+step: 42, beta:  0.000
+step: 43, beta:  0.000
+step: 44, beta:  0.000
+step: 45, beta:  0.000
+step: 46, beta:  0.000
+step: 47, beta:  0.000
+step: 48, beta:  0.000
+step: 49, beta:  0.000
+step: 50, beta:  0.000
+step: 51, beta:  0.000
+step: 52, beta:  0.000
+step: 53, beta:  0.000
+step: 54, beta:  0.000
+step: 55, beta:  0.000
+step: 56, beta:  0.000
+step: 57, beta:  0.000
+step: 58, beta:  0.000
+step: 59, beta:  0.000
+step: 60, beta:  0.000
+step: 61, beta:  0.000
+step: 62, beta:  0.000
+step: 63, beta:  0.000
+step: 64, beta:  0.000
+step: 65, beta:  0.000
+step: 66, beta:  0.000
+step: 67, beta:  0.000
+step: 68, beta:  0.000
+step: 69, beta:  0.000
+step: 70, beta:  0.000
+step: 71, beta:  0.000
+step: 72, beta:  0.000
+step: 73, beta:  0.000
+step: 74, beta:  0.000
+step: 75, beta:  0.000
+step: 76, beta:  0.000
+step: 77, beta:  0.000
+step: 78, beta:  0.000
+step: 79, beta:  0.000
+step: 80, beta:  0.000
+step: 81, beta:  0.000
+step: 82, beta:  0.000
+step: 83, beta:  0.000
+step: 84, beta:  0.000
+step: 85, beta:  0.000
+step: 86, beta:  0.000
+step: 87, beta:  0.000
+step: 88, beta:  0.000
+step: 89, beta:  0.000
+step: 90, beta:  0.000
+step: 91, beta:  0.000
+step: 92, beta:  0.000
+step: 93, beta:  0.000
+step: 94, beta:  0.000
+step: 95, beta:  0.000
+step: 96, beta:  0.000
+step: 97, beta:  0.000
+step: 98, beta:  0.000
+step: 99, beta:  0.000
+step: 100, beta:  0.000
+step: 101, beta:  0.001
+step: 102, beta:  0.002
+step: 103, beta:  0.003
+step: 104, beta:  0.004
+step: 105, beta:  0.005
+step: 106, beta:  0.006
+step: 107, beta:  0.007
+step: 108, beta:  0.008
+step: 109, beta:  0.009
+step: 110, beta:  0.010
+step: 111, beta:  0.011
+step: 112, beta:  0.012
+step: 113, beta:  0.013
+step: 114, beta:  0.014
+step: 115, beta:  0.015
+step: 116, beta:  0.016
+step: 117, beta:  0.017
+step: 118, beta:  0.018
+step: 119, beta:  0.019
+step: 120, beta:  0.020
+step: 121, beta:  0.021
+step: 122, beta:  0.022
+step: 123, beta:  0.023
+step: 124, beta:  0.024
+step: 125, beta:  0.025
+step: 126, beta:  0.026
+step: 127, beta:  0.027
+step: 128, beta:  0.028
+step: 129, beta:  0.029
+step: 130, beta:  0.030
+step: 131, beta:  0.031
+step: 132, beta:  0.032
+step: 133, beta:  0.033
+step: 134, beta:  0.034
+step: 135, beta:  0.035
+step: 136, beta:  0.036
+step: 137, beta:  0.037
+step: 138, beta:  0.038
+step: 139, beta:  0.039
+step: 140, beta:  0.040
+step: 141, beta:  0.041
+step: 142, beta:  0.042
+step: 143, beta:  0.043
+step: 144, beta:  0.044
+step: 145, beta:  0.045
+step: 146, beta:  0.046
+step: 147, beta:  0.047
+step: 148, beta:  0.048
+step: 149, beta:  0.049
+step: 150, beta:  0.050
+step: 151, beta:  0.051
+step: 152, beta:  0.052
+step: 153, beta:  0.053
+step: 154, beta:  0.054
+step: 155, beta:  0.055
+step: 156, beta:  0.056
+step: 157, beta:  0.057
+step: 158, beta:  0.058
+step: 159, beta:  0.059
+step: 160, beta:  0.060
+step: 161, beta:  0.061
+step: 162, beta:  0.062
+step: 163, beta:  0.063
+step: 164, beta:  0.064
+step: 165, beta:  0.065
+step: 166, beta:  0.066
+step: 167, beta:  0.067
+step: 168, beta:  0.068
+step: 169, beta:  0.069
+step: 170, beta:  0.070
+step: 171, beta:  0.071
+step: 172, beta:  0.072
+step: 173, beta:  0.073
+step: 174, beta:  0.074
+step: 175, beta:  0.075
+step: 176, beta:  0.076
+step: 177, beta:  0.077
+step: 178, beta:  0.078
+step: 179, beta:  0.079
+step: 180, beta:  0.080
+step: 181, beta:  0.081
+step: 182, beta:  0.082
+step: 183, beta:  0.083
+step: 184, beta:  0.084
+step: 185, beta:  0.085
+step: 186, beta:  0.086
+step: 187, beta:  0.087
+step: 188, beta:  0.088
+step: 189, beta:  0.089
+step: 190, beta:  0.090
+step: 191, beta:  0.091
+step: 192, beta:  0.092
+step: 193, beta:  0.093
+step: 194, beta:  0.094
+step: 195, beta:  0.095
+step: 196, beta:  0.096
+step: 197, beta:  0.097
+step: 198, beta:  0.098
+step: 199, beta:  0.099
+step: 200, beta:  0.100
+step: 201, beta:  0.101
+step: 202, beta:  0.102
+step: 203, beta:  0.103
+step: 204, beta:  0.104
+step: 205, beta:  0.105
+step: 206, beta:  0.106
+step: 207, beta:  0.107
+step: 208, beta:  0.108
+step: 209, beta:  0.109
+step: 210, beta:  0.110
+step: 211, beta:  0.111
+step: 212, beta:  0.112
+step: 213, beta:  0.113
+step: 214, beta:  0.114
+step: 215, beta:  0.115
+step: 216, beta:  0.116
+step: 217, beta:  0.117
+step: 218, beta:  0.118
+step: 219, beta:  0.119
+step: 220, beta:  0.120
+step: 221, beta:  0.121
+step: 222, beta:  0.122
+step: 223, beta:  0.123
+step: 224, beta:  0.124
+step: 225, beta:  0.125
+step: 226, beta:  0.126
+step: 227, beta:  0.127
+step: 228, beta:  0.128
+step: 229, beta:  0.129
+step: 230, beta:  0.130
+step: 231, beta:  0.131
+step: 232, beta:  0.132
+step: 233, beta:  0.133
+step: 234, beta:  0.134
+step: 235, beta:  0.135
+step: 236, beta:  0.136
+step: 237, beta:  0.137
+step: 238, beta:  0.138
+step: 239, beta:  0.139
+step: 240, beta:  0.140
+step: 241, beta:  0.141
+step: 242, beta:  0.142
+step: 243, beta:  0.143
+step: 244, beta:  0.144
+step: 245, beta:  0.145
+step: 246, beta:  0.146
+step: 247, beta:  0.147
+step: 248, beta:  0.148
+step: 249, beta:  0.149
+step: 250, beta:  0.150
+step: 251, beta:  0.151
+step: 252, beta:  0.152
+step: 253, beta:  0.153
+step: 254, beta:  0.154
+step: 255, beta:  0.155
+step: 256, beta:  0.156
+step: 257, beta:  0.157
+step: 258, beta:  0.158
+step: 259, beta:  0.159
+step: 260, beta:  0.160
+step: 261, beta:  0.161
+step: 262, beta:  0.162
+step: 263, beta:  0.163
+step: 264, beta:  0.164
+step: 265, beta:  0.165
+step: 266, beta:  0.166
+step: 267, beta:  0.167
+step: 268, beta:  0.168
+step: 269, beta:  0.169
+step: 270, beta:  0.170
+step: 271, beta:  0.171
+step: 272, beta:  0.172
+step: 273, beta:  0.173
+step: 274, beta:  0.174
+step: 275, beta:  0.175
+step: 276, beta:  0.176
+step: 277, beta:  0.177
+step: 278, beta:  0.178
+step: 279, beta:  0.179
+step: 280, beta:  0.180
+step: 281, beta:  0.181
+step: 282, beta:  0.182
+step: 283, beta:  0.183
+step: 284, beta:  0.184
+step: 285, beta:  0.185
+step: 286, beta:  0.186
+step: 287, beta:  0.187
+step: 288, beta:  0.188
+step: 289, beta:  0.189
+step: 290, beta:  0.190
+step: 291, beta:  0.191
+step: 292, beta:  0.192
+step: 293, beta:  0.193
+step: 294, beta:  0.194
+step: 295, beta:  0.195
+step: 296, beta:  0.196
+step: 297, beta:  0.197
+step: 298, beta:  0.198
+step: 299, beta:  0.199
+step: 300, beta:  0.200
+step: 301, beta:  0.201
+step: 302, beta:  0.202
+step: 303, beta:  0.203
+step: 304, beta:  0.204
+step: 305, beta:  0.205
+step: 306, beta:  0.206
+step: 307, beta:  0.207
+step: 308, beta:  0.208
+step: 309, beta:  0.209
+step: 310, beta:  0.210
+step: 311, beta:  0.211
+step: 312, beta:  0.212
+step: 313, beta:  0.213
+step: 314, beta:  0.214
+step: 315, beta:  0.215
+step: 316, beta:  0.216
+step: 317, beta:  0.217
+step: 318, beta:  0.218
+step: 319, beta:  0.219
+step: 320, beta:  0.220
+step: 321, beta:  0.221
+step: 322, beta:  0.222
+step: 323, beta:  0.223
+step: 324, beta:  0.224
+step: 325, beta:  0.225
+step: 326, beta:  0.226
+step: 327, beta:  0.227
+step: 328, beta:  0.228
+step: 329, beta:  0.229
+step: 330, beta:  0.230
+step: 331, beta:  0.231
+step: 332, beta:  0.232
+step: 333, beta:  0.233
+step: 334, beta:  0.234
+step: 335, beta:  0.235
+step: 336, beta:  0.236
+step: 337, beta:  0.237
+step: 338, beta:  0.238
+step: 339, beta:  0.239
+step: 340, beta:  0.240
+step: 341, beta:  0.241
+step: 342, beta:  0.242
+step: 343, beta:  0.243
+step: 344, beta:  0.244
+step: 345, beta:  0.245
+step: 346, beta:  0.246
+step: 347, beta:  0.247
+step: 348, beta:  0.248
+step: 349, beta:  0.249
+step: 350, beta:  0.250
+step: 351, beta:  0.251
+step: 352, beta:  0.252
+step: 353, beta:  0.253
+step: 354, beta:  0.254
+step: 355, beta:  0.255
+step: 356, beta:  0.256
+step: 357, beta:  0.257
+step: 358, beta:  0.258
+step: 359, beta:  0.259
+step: 360, beta:  0.260
+step: 361, beta:  0.261
+step: 362, beta:  0.262
+step: 363, beta:  0.263
+step: 364, beta:  0.264
+step: 365, beta:  0.265
+step: 366, beta:  0.266
+step: 367, beta:  0.267
+step: 368, beta:  0.268
+step: 369, beta:  0.269
+step: 370, beta:  0.270
+step: 371, beta:  0.271
+step: 372, beta:  0.272
+step: 373, beta:  0.273
+step: 374, beta:  0.274
+step: 375, beta:  0.275
+step: 376, beta:  0.276
+step: 377, beta:  0.277
+step: 378, beta:  0.278
+step: 379, beta:  0.279
+step: 380, beta:  0.280
+step: 381, beta:  0.281
+step: 382, beta:  0.282
+step: 383, beta:  0.283
+step: 384, beta:  0.284
+step: 385, beta:  0.285
+step: 386, beta:  0.286
+step: 387, beta:  0.287
+step: 388, beta:  0.288
+step: 389, beta:  0.289
+step: 390, beta:  0.290
+step: 391, beta:  0.291
+step: 392, beta:  0.292
+step: 393, beta:  0.293
+step: 394, beta:  0.294
+step: 395, beta:  0.295
+step: 396, beta:  0.296
+step: 397, beta:  0.297
+step: 398, beta:  0.298
+step: 399, beta:  0.299
+step: 400, beta:  0.300
+step: 401, beta:  0.301
+step: 402, beta:  0.302
+step: 403, beta:  0.303
+step: 404, beta:  0.304
+step: 405, beta:  0.305
+step: 406, beta:  0.306
+step: 407, beta:  0.307
+step: 408, beta:  0.308
+step: 409, beta:  0.309
+step: 410, beta:  0.310
+step: 411, beta:  0.311
+step: 412, beta:  0.312
+step: 413, beta:  0.313
+step: 414, beta:  0.314
+step: 415, beta:  0.315
+step: 416, beta:  0.316
+step: 417, beta:  0.317
+step: 418, beta:  0.318
+step: 419, beta:  0.319
+step: 420, beta:  0.320
+step: 421, beta:  0.321
+step: 422, beta:  0.322
+step: 423, beta:  0.323
+step: 424, beta:  0.324
+step: 425, beta:  0.325
+step: 426, beta:  0.326
+step: 427, beta:  0.327
+step: 428, beta:  0.328
+step: 429, beta:  0.329
+step: 430, beta:  0.330
+step: 431, beta:  0.331
+step: 432, beta:  0.332
+step: 433, beta:  0.333
+step: 434, beta:  0.334
+step: 435, beta:  0.335
+step: 436, beta:  0.336
+step: 437, beta:  0.337
+step: 438, beta:  0.338
+step: 439, beta:  0.339
+step: 440, beta:  0.340
+step: 441, beta:  0.341
+step: 442, beta:  0.342
+step: 443, beta:  0.343
+step: 444, beta:  0.344
+step: 445, beta:  0.345
+step: 446, beta:  0.346
+step: 447, beta:  0.347
+step: 448, beta:  0.348
+step: 449, beta:  0.349
+step: 450, beta:  0.350
+step: 451, beta:  0.351
+step: 452, beta:  0.352
+step: 453, beta:  0.353
+step: 454, beta:  0.354
+step: 455, beta:  0.355
+step: 456, beta:  0.356
+step: 457, beta:  0.357
+step: 458, beta:  0.358
+step: 459, beta:  0.359
+step: 460, beta:  0.360
+step: 461, beta:  0.361
+step: 462, beta:  0.362
+step: 463, beta:  0.363
+step: 464, beta:  0.364
+step: 465, beta:  0.365
+step: 466, beta:  0.366
+step: 467, beta:  0.367
+step: 468, beta:  0.368
+step: 469, beta:  0.369
+step: 470, beta:  0.370
+step: 471, beta:  0.371
+step: 472, beta:  0.372
+step: 473, beta:  0.373
+step: 474, beta:  0.374
+step: 475, beta:  0.375
+step: 476, beta:  0.376
+step: 477, beta:  0.377
+step: 478, beta:  0.378
+step: 479, beta:  0.379
+step: 480, beta:  0.380
+step: 481, beta:  0.381
+step: 482, beta:  0.382
+step: 483, beta:  0.383
+step: 484, beta:  0.384
+step: 485, beta:  0.385
+step: 486, beta:  0.386
+step: 487, beta:  0.387
+step: 488, beta:  0.388
+step: 489, beta:  0.389
+step: 490, beta:  0.390
+step: 491, beta:  0.391
+step: 492, beta:  0.392
+step: 493, beta:  0.393
+step: 494, beta:  0.394
+step: 495, beta:  0.395
+step: 496, beta:  0.396
+step: 497, beta:  0.397
+step: 498, beta:  0.398
+step: 499, beta:  0.399
+step: 500, beta:  0.400
+step: 501, beta:  0.401
+step: 502, beta:  0.402
+step: 503, beta:  0.403
+step: 504, beta:  0.404
+step: 505, beta:  0.405
+step: 506, beta:  0.406
+step: 507, beta:  0.407
+step: 508, beta:  0.408
+step: 509, beta:  0.409
+step: 510, beta:  0.410
+step: 511, beta:  0.411
+step: 512, beta:  0.412
+step: 513, beta:  0.413
+step: 514, beta:  0.414
+step: 515, beta:  0.415
+step: 516, beta:  0.416
+step: 517, beta:  0.417
+step: 518, beta:  0.418
+step: 519, beta:  0.419
+step: 520, beta:  0.420
+step: 521, beta:  0.421
+step: 522, beta:  0.422
+step: 523, beta:  0.423
+step: 524, beta:  0.424
+step: 525, beta:  0.425
+step: 526, beta:  0.426
+step: 527, beta:  0.427
+step: 528, beta:  0.428
+step: 529, beta:  0.429
+step: 530, beta:  0.430
+step: 531, beta:  0.431
+step: 532, beta:  0.432
+step: 533, beta:  0.433
+step: 534, beta:  0.434
+step: 535, beta:  0.435
+step: 536, beta:  0.436
+step: 537, beta:  0.437
+step: 538, beta:  0.438
+step: 539, beta:  0.439
+step: 540, beta:  0.440
+step: 541, beta:  0.441
+step: 542, beta:  0.442
+step: 543, beta:  0.443
+step: 544, beta:  0.444
+step: 545, beta:  0.445
+step: 546, beta:  0.446
+step: 547, beta:  0.447
+step: 548, beta:  0.448
+step: 549, beta:  0.449
+step: 550, beta:  0.450
+step: 551, beta:  0.451
+step: 552, beta:  0.452
+step: 553, beta:  0.453
+step: 554, beta:  0.454
+step: 555, beta:  0.455
+step: 556, beta:  0.456
+step: 557, beta:  0.457
+step: 558, beta:  0.458
+step: 559, beta:  0.459
+step: 560, beta:  0.460
+step: 561, beta:  0.461
+step: 562, beta:  0.462
+step: 563, beta:  0.463
+step: 564, beta:  0.464
+step: 565, beta:  0.465
+step: 566, beta:  0.466
+step: 567, beta:  0.467
+step: 568, beta:  0.468
+step: 569, beta:  0.469
+step: 570, beta:  0.470
+step: 571, beta:  0.471
+step: 572, beta:  0.472
+step: 573, beta:  0.473
+step: 574, beta:  0.474
+step: 575, beta:  0.475
+step: 576, beta:  0.476
+step: 577, beta:  0.477
+step: 578, beta:  0.478
+step: 579, beta:  0.479
+step: 580, beta:  0.480
+step: 581, beta:  0.481
+step: 582, beta:  0.482
+step: 583, beta:  0.483
+step: 584, beta:  0.484
+step: 585, beta:  0.485
+step: 586, beta:  0.486
+step: 587, beta:  0.487
+step: 588, beta:  0.488
+step: 589, beta:  0.489
+step: 590, beta:  0.490
+step: 591, beta:  0.491
+step: 592, beta:  0.492
+step: 593, beta:  0.493
+step: 594, beta:  0.494
+step: 595, beta:  0.495
+step: 596, beta:  0.496
+step: 597, beta:  0.497
+step: 598, beta:  0.498
+step: 599, beta:  0.499
+step: 600, beta:  0.501
+step: 601, beta:  0.502
+step: 602, beta:  0.503
+step: 603, beta:  0.504
+step: 604, beta:  0.505
+step: 605, beta:  0.506
+step: 606, beta:  0.507
+step: 607, beta:  0.508
+step: 608, beta:  0.509
+step: 609, beta:  0.510
+step: 610, beta:  0.511
+step: 611, beta:  0.512
+step: 612, beta:  0.513
+step: 613, beta:  0.514
+step: 614, beta:  0.515
+step: 615, beta:  0.516
+step: 616, beta:  0.517
+step: 617, beta:  0.518
+step: 618, beta:  0.519
+step: 619, beta:  0.520
+step: 620, beta:  0.521
+step: 621, beta:  0.522
+step: 622, beta:  0.523
+step: 623, beta:  0.524
+step: 624, beta:  0.525
+step: 625, beta:  0.526
+step: 626, beta:  0.527
+step: 627, beta:  0.528
+step: 628, beta:  0.529
+step: 629, beta:  0.530
+step: 630, beta:  0.531
+step: 631, beta:  0.532
+step: 632, beta:  0.533
+step: 633, beta:  0.534
+step: 634, beta:  0.535
+step: 635, beta:  0.536
+step: 636, beta:  0.537
+step: 637, beta:  0.538
+step: 638, beta:  0.539
+step: 639, beta:  0.540
+step: 640, beta:  0.541
+step: 641, beta:  0.542
+step: 642, beta:  0.543
+step: 643, beta:  0.544
+step: 644, beta:  0.545
+step: 645, beta:  0.546
+step: 646, beta:  0.547
+step: 647, beta:  0.548
+step: 648, beta:  0.549
+step: 649, beta:  0.550
+step: 650, beta:  0.551
+step: 651, beta:  0.552
+step: 652, beta:  0.553
+step: 653, beta:  0.554
+step: 654, beta:  0.555
+step: 655, beta:  0.556
+step: 656, beta:  0.557
+step: 657, beta:  0.558
+step: 658, beta:  0.559
+step: 659, beta:  0.560
+step: 660, beta:  0.561
+step: 661, beta:  0.562
+step: 662, beta:  0.563
+step: 663, beta:  0.564
+step: 664, beta:  0.565
+step: 665, beta:  0.566
+step: 666, beta:  0.567
+step: 667, beta:  0.568
+step: 668, beta:  0.569
+step: 669, beta:  0.570
+step: 670, beta:  0.571
+step: 671, beta:  0.572
+step: 672, beta:  0.573
+step: 673, beta:  0.574
+step: 674, beta:  0.575
+step: 675, beta:  0.576
+step: 676, beta:  0.577
+step: 677, beta:  0.578
+step: 678, beta:  0.579
+step: 679, beta:  0.580
+step: 680, beta:  0.581
+step: 681, beta:  0.582
+step: 682, beta:  0.583
+step: 683, beta:  0.584
+step: 684, beta:  0.585
+step: 685, beta:  0.586
+step: 686, beta:  0.587
+step: 687, beta:  0.588
+step: 688, beta:  0.589
+step: 689, beta:  0.590
+step: 690, beta:  0.591
+step: 691, beta:  0.592
+step: 692, beta:  0.593
+step: 693, beta:  0.594
+step: 694, beta:  0.595
+step: 695, beta:  0.596
+step: 696, beta:  0.597
+step: 697, beta:  0.598
+step: 698, beta:  0.599
+step: 699, beta:  0.600
+step: 700, beta:  0.601
+step: 701, beta:  0.602
+step: 702, beta:  0.603
+step: 703, beta:  0.604
+step: 704, beta:  0.605
+step: 705, beta:  0.606
+step: 706, beta:  0.607
+step: 707, beta:  0.608
+step: 708, beta:  0.609
+step: 709, beta:  0.610
+step: 710, beta:  0.611
+step: 711, beta:  0.612
+step: 712, beta:  0.613
+step: 713, beta:  0.614
+step: 714, beta:  0.615
+step: 715, beta:  0.616
+step: 716, beta:  0.617
+step: 717, beta:  0.618
+step: 718, beta:  0.619
+step: 719, beta:  0.620
+step: 720, beta:  0.621
+step: 721, beta:  0.622
+step: 722, beta:  0.623
+step: 723, beta:  0.624
+step: 724, beta:  0.625
+step: 725, beta:  0.626
+step: 726, beta:  0.627
+step: 727, beta:  0.628
+step: 728, beta:  0.629
+step: 729, beta:  0.630
+step: 730, beta:  0.631
+step: 731, beta:  0.632
+step: 732, beta:  0.633
+step: 733, beta:  0.634
+step: 734, beta:  0.635
+step: 735, beta:  0.636
+step: 736, beta:  0.637
+step: 737, beta:  0.638
+step: 738, beta:  0.639
+step: 739, beta:  0.640
+step: 740, beta:  0.641
+step: 741, beta:  0.642
+step: 742, beta:  0.643
+step: 743, beta:  0.644
+step: 744, beta:  0.645
+step: 745, beta:  0.646
+step: 746, beta:  0.647
+step: 747, beta:  0.648
+step: 748, beta:  0.649
+step: 749, beta:  0.650
+step: 750, beta:  0.651
+step: 751, beta:  0.652
+step: 752, beta:  0.653
+step: 753, beta:  0.654
+step: 754, beta:  0.655
+step: 755, beta:  0.656
+step: 756, beta:  0.657
+step: 757, beta:  0.658
+step: 758, beta:  0.659
+step: 759, beta:  0.660
+step: 760, beta:  0.661
+step: 761, beta:  0.662
+step: 762, beta:  0.663
+step: 763, beta:  0.664
+step: 764, beta:  0.665
+step: 765, beta:  0.666
+step: 766, beta:  0.667
+step: 767, beta:  0.668
+step: 768, beta:  0.669
+step: 769, beta:  0.670
+step: 770, beta:  0.671
+step: 771, beta:  0.672
+step: 772, beta:  0.673
+step: 773, beta:  0.674
+step: 774, beta:  0.675
+step: 775, beta:  0.676
+step: 776, beta:  0.677
+step: 777, beta:  0.678
+step: 778, beta:  0.679
+step: 779, beta:  0.680
+step: 780, beta:  0.681
+step: 781, beta:  0.682
+step: 782, beta:  0.683
+step: 783, beta:  0.684
+step: 784, beta:  0.685
+step: 785, beta:  0.686
+step: 786, beta:  0.687
+step: 787, beta:  0.688
+step: 788, beta:  0.689
+step: 789, beta:  0.690
+step: 790, beta:  0.691
+step: 791, beta:  0.692
+step: 792, beta:  0.693
+step: 793, beta:  0.694
+step: 794, beta:  0.695
+step: 795, beta:  0.696
+step: 796, beta:  0.697
+step: 797, beta:  0.698
+step: 798, beta:  0.699
+step: 799, beta:  0.700
+step: 800, beta:  0.701
+step: 801, beta:  0.702
+step: 802, beta:  0.703
+step: 803, beta:  0.704
+step: 804, beta:  0.705
+step: 805, beta:  0.706
+step: 806, beta:  0.707
+step: 807, beta:  0.708
+step: 808, beta:  0.709
+step: 809, beta:  0.710
+step: 810, beta:  0.711
+step: 811, beta:  0.712
+step: 812, beta:  0.713
+step: 813, beta:  0.714
+step: 814, beta:  0.715
+step: 815, beta:  0.716
+step: 816, beta:  0.717
+step: 817, beta:  0.718
+step: 818, beta:  0.719
+step: 819, beta:  0.720
+step: 820, beta:  0.721
+step: 821, beta:  0.722
+step: 822, beta:  0.723
+step: 823, beta:  0.724
+step: 824, beta:  0.725
+step: 825, beta:  0.726
+step: 826, beta:  0.727
+step: 827, beta:  0.728
+step: 828, beta:  0.729
+step: 829, beta:  0.730
+step: 830, beta:  0.731
+step: 831, beta:  0.732
+step: 832, beta:  0.733
+step: 833, beta:  0.734
+step: 834, beta:  0.735
+step: 835, beta:  0.736
+step: 836, beta:  0.737
+step: 837, beta:  0.738
+step: 838, beta:  0.739
+step: 839, beta:  0.740
+step: 840, beta:  0.741
+step: 841, beta:  0.742
+step: 842, beta:  0.743
+step: 843, beta:  0.744
+step: 844, beta:  0.745
+step: 845, beta:  0.746
+step: 846, beta:  0.747
+step: 847, beta:  0.748
+step: 848, beta:  0.749
+step: 849, beta:  0.750
+step: 850, beta:  0.751
+step: 851, beta:  0.752
+step: 852, beta:  0.753
+step: 853, beta:  0.754
+step: 854, beta:  0.755
+step: 855, beta:  0.756
+step: 856, beta:  0.757
+step: 857, beta:  0.758
+step: 858, beta:  0.759
+step: 859, beta:  0.760
+step: 860, beta:  0.761
+step: 861, beta:  0.762
+step: 862, beta:  0.763
+step: 863, beta:  0.764
+step: 864, beta:  0.765
+step: 865, beta:  0.766
+step: 866, beta:  0.767
+step: 867, beta:  0.768
+step: 868, beta:  0.769
+step: 869, beta:  0.770
+step: 870, beta:  0.771
+step: 871, beta:  0.772
+step: 872, beta:  0.773
+step: 873, beta:  0.774
+step: 874, beta:  0.775
+step: 875, beta:  0.776
+step: 876, beta:  0.777
+step: 877, beta:  0.778
+step: 878, beta:  0.779
+step: 879, beta:  0.780
+step: 880, beta:  0.781
+step: 881, beta:  0.782
+step: 882, beta:  0.783
+step: 883, beta:  0.784
+step: 884, beta:  0.785
+step: 885, beta:  0.786
+step: 886, beta:  0.787
+step: 887, beta:  0.788
+step: 888, beta:  0.789
+step: 889, beta:  0.790
+step: 890, beta:  0.791
+step: 891, beta:  0.792
+step: 892, beta:  0.793
+step: 893, beta:  0.794
+step: 894, beta:  0.795
+step: 895, beta:  0.796
+step: 896, beta:  0.797
+step: 897, beta:  0.798
+step: 898, beta:  0.799
+step: 899, beta:  0.800
+step: 900, beta:  0.801
+step: 901, beta:  0.802
+step: 902, beta:  0.803
+step: 903, beta:  0.804
+step: 904, beta:  0.805
+step: 905, beta:  0.806
+step: 906, beta:  0.807
+step: 907, beta:  0.808
+step: 908, beta:  0.809
+step: 909, beta:  0.810
+step: 910, beta:  0.811
+step: 911, beta:  0.812
+step: 912, beta:  0.813
+step: 913, beta:  0.814
+step: 914, beta:  0.815
+step: 915, beta:  0.816
+step: 916, beta:  0.817
+step: 917, beta:  0.818
+step: 918, beta:  0.819
+step: 919, beta:  0.820
+step: 920, beta:  0.821
+step: 921, beta:  0.822
+step: 922, beta:  0.823
+step: 923, beta:  0.824
+step: 924, beta:  0.825
+step: 925, beta:  0.826
+step: 926, beta:  0.827
+step: 927, beta:  0.828
+step: 928, beta:  0.829
+step: 929, beta:  0.830
+step: 930, beta:  0.831
+step: 931, beta:  0.832
+step: 932, beta:  0.833
+step: 933, beta:  0.834
+step: 934, beta:  0.835
+step: 935, beta:  0.836
+step: 936, beta:  0.837
+step: 937, beta:  0.838
+step: 938, beta:  0.839
+step: 939, beta:  0.840
+step: 940, beta:  0.841
+step: 941, beta:  0.842
+step: 942, beta:  0.843
+step: 943, beta:  0.844
+step: 944, beta:  0.845
+step: 945, beta:  0.846
+step: 946, beta:  0.847
+step: 947, beta:  0.848
+step: 948, beta:  0.849
+step: 949, beta:  0.850
+step: 950, beta:  0.851
+step: 951, beta:  0.852
+step: 952, beta:  0.853
+step: 953, beta:  0.854
+step: 954, beta:  0.855
+step: 955, beta:  0.856
+step: 956, beta:  0.857

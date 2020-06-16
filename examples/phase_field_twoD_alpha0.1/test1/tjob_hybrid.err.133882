@@ -1,0 +1,4 @@
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+slurmstepd: error: *** JOB 133882 ON talos038 CANCELLED AT 2020-06-02T18:57:48 ***
+slurmstepd: error: *** STEP 133882.0 ON talos038 CANCELLED AT 2020-06-02T18:57:48 ***
+slurmstepd: error: Detected 1 oom-kill event(s) in step 133882.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
