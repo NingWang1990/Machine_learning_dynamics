@@ -52,8 +52,9 @@ class NNSmoothing2D:
                     tf.reduce_mean(tf.square(self.u_xxy_pred)) + \
                     tf.reduce_mean(tf.square(self.u_xyy_pred)) + \
                     tf.reduce_mean(tf.square(self.u_yyy_pred)) )
-                    
-        self.optimizer = tf.contrib.opt.ScipyOptimizerInterface(self.loss, 
+        self.use_LBFGS = use_LBFGS
+        if use_LBFGS is True:
+            self.optimizer = tf.contrib.opt.ScipyOptimizerInterface(self.loss, 
                                                                 method = 'L-BFGS-B', 
                                                                 options = {'maxiter': 50000,
                                                                            'maxfun': 50000,
@@ -113,26 +114,35 @@ class NNSmoothing2D:
     def callback(self, loss):
         print('Loss: %.3e' % (loss))
     
-    def train(self, nIter): 
-
-        tf_dict = {self.x_tf: self.x, self.y_tf:self.y, self.t_tf:self.t, self.u_tf:self.u}
-        
+    def train(self, nIter,minibatch_size=100000): 
+       
         start_time = time.time()
+        n_batches  = int(np.round(len(self.x)/minibatch_size))
+
         for it in range(nIter):
+            for i in range(n_batches):
+                start = i*minibatch_size
+                if i == n_batches-1:
+                    end = len(self.x)
+                else:
+                    end = (i+1)*minibatch_size
+            tf_dict = {self.x_tf: self.x[start:end], self.y_tf:self.y[start:end], self.t_tf:self.t[start:end], self.u_tf:self.u[start:end]}
             self.sess.run(self.train_op_Adam, tf_dict)
             
             # Print
             if it % 10 == 0:
                 elapsed = time.time() - start_time
+
                 loss_value = self.sess.run(self.loss, tf_dict)
                 print('It: %d, Loss: %.3e, Time: %.2f' % 
                       (it, loss_value, elapsed))
                 start_time = time.time()
-            
-        self.optimizer.minimize(self.sess,
-                                feed_dict = tf_dict,
-                                fetches = [self.loss,],
-                                loss_callback = self.callback)
+        
+        if self.use_LBFGS is True:
+            self.optimizer.minimize(self.sess,
+                                    feed_dict = tf_dict,
+                                    fetches = [self.loss,],
+                                 loss_callback = self.callback)
             
     
     def predict(self, x_star, y_star, t_star):
