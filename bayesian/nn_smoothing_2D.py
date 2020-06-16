@@ -15,7 +15,10 @@ tf.set_random_seed(1234)
 
 class NNSmoothing2D:
     # Initialize the class
-    def __init__(self, x, y, t, u, hidden_layers=[20,20,20,20,20,20], alpha=0.1):
+    def __init__(self, x, y, t, u, hidden_layers=[20,20,20,20,20,20], alpha=0.1,use_LBFGS=False):
+        """
+        use_LBFGS.............Boolean. If True, run LBFGS optimizer after Adam optimizer
+        """
         
         layers = [3,] + hidden_layers + [1,]
         self.x = x
