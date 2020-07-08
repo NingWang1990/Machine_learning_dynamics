@@ -1,0 +1,9 @@
+link: https://jsfiddle.net/8ndx694g/
+
+
+Posterior:
+P(\mathrm{PDE}|\mathrm{Data}) \propto \mathrm{Likelihood} (\mathrm{Data}| \mathrm{PDE})\cdot \mathrm{Prior}(\mathrm{PDE})
+
+Prior:
+\mathrm{Prior}(\mathrm{PDE}) = \mathrm{exp}[-\gamma \cdot \mathrm{Complexity}(\mathrm{PDE})]
+
