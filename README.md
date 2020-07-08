@@ -12,8 +12,8 @@ Apparently,we first need to evaluate the numerical derivatives. It is actually a
 
 where the first term is the regularization term, the second term the mean squared loss, and g the neural network.  
 
-I call this new scheme the **deep learning total variation regularization**. Once we finish training the neural networks, we can then use the automatic differentiation to obtain numerical derivatives to any order. 
+I call this scheme **deep learning total variation regularization**. Once we finish training the neural networks, we can then use the automatic differentiation to obtain numerical derivatives to any order. 
 
-### deep learning total variation regularization
-![Alt Text](https://media.giphy.com/media/J2V1ppHgClb3RcA3ES/giphy.gif) 
-           ![Alt Text](https://media.giphy.com/media/jrnocDRGaJ7VRJnb1w/giphy.gif)
+Now I use a simple example demonstrate this scheme. 
+The video below is the soft-segmentation result of a real in situ STEM video.  
+<img src="https://media.giphy.com/media/J2V1ppHgClb3RcA3ES/giphy.gif" width="250" height="250"/>
