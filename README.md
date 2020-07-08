@@ -16,5 +16,6 @@ I call this scheme **deep learning total variation regularization**. Once we fin
 
 Now I use a simple example demonstrate this scheme. 
 The video below is the soft-segmentation result of a real in situ STEM video.  
-
+<p align="center">
 <img src="https://media.giphy.com/media/J2V1ppHgClb3RcA3ES/giphy.gif" width="250" height="200" >
+</p>
