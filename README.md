@@ -55,6 +55,7 @@ and define the prior probability as a function of the PDE complexity
 as we don't want to get too complex PDE. 
 
 We plot the final result for the video shown above as a Pareto frontier for PDE complexity and mean absolute error (MAE)
+
 ![alt text](https://github.com/NingWang1990/Machine_learning_dynamics/blob/master/for_readme/Pareto_frontier.png?raw=true)
 
 The best PDE is a first-order hyperbolic PDE, which is not a surprise.
