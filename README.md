@@ -9,5 +9,5 @@ that can describe the video. <img src="https://render.githubusercontent.com/rend
 Apparently,we first need to evaluate the numerical derivatives. It is actually a challenging task for experimental data as they are noisy and sometimes sparse. The convential approachs, such as the finite difference method, are of little help. Interestingly, deep learning offers an elegant way to resolve this challenge. We may parametrize a neural nework for the insitu video, which should be a smooth function of <img src="https://render.githubusercontent.com/render/math?math=%5CLarge%0Ax">, <img src="https://render.githubusercontent.com/render/math?math=%5CLarge%0Ay">, and <img src="https://render.githubusercontent.com/render/math?math=%5CLarge%0At">. In order to guarantee the smoothness, I apply the total variation regularization on the neural network. I call this new scheme the deep learning total variation regularization. Once we finish training the neural networks, we can then use the automatic differentiation to obtain numerical derivatives to any order. 
 
 ### deep learning total variation regularization
-![Alt Text](https://media.giphy.com/media/J2V1ppHgClb3RcA3ES/giphy.gif)
-![Alt Text](https://media.giphy.com/media/jrnocDRGaJ7VRJnb1w/giphy.gif)
+![Alt Text](https://media.giphy.com/media/J2V1ppHgClb3RcA3ES/giphy.gif) 
+           ![Alt Text](https://media.giphy.com/media/jrnocDRGaJ7VRJnb1w/giphy.gif)
