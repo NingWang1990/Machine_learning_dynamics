@@ -12,7 +12,7 @@ Apparently,we first need to evaluate the numerical derivatives. It is actually a
 
 where the first term is the regularization term, the second term the mean squared loss, and g the neural network.  
 
-I call this new scheme the [deep learning total variation regularization]. Once we finish training the neural networks, we can then use the automatic differentiation to obtain numerical derivatives to any order. 
+I call this new scheme the [!deep learning total variation regularization]. Once we finish training the neural networks, we can then use the automatic differentiation to obtain numerical derivatives to any order. 
 
 ### deep learning total variation regularization
 ![Alt Text](https://media.giphy.com/media/J2V1ppHgClb3RcA3ES/giphy.gif) 
